@@ -1,5 +1,6 @@
 # Requisitos #
 - Docker
+- Docker Compose (aceite version '2')
 
 # Instruções de instalação #
 - Acesse a pasta onde irá clonar o projeto
