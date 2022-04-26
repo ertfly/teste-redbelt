@@ -1,7 +1,7 @@
 import HeaderOut from './../HeaderOut'
 import './Login.css'
 
-function Login() {
+function Login(){  
 
     if(sessionStorage.getItem('login')){
         document.location.href='/'
