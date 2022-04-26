@@ -3,7 +3,7 @@ import { useState } from 'react';
 import './Login.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { createToken } from './../../Redux/Actions/Session';
-import {BASE_URL} from '../../Config'
+import { BASE_URL } from '../../Config'
 import axios from 'axios'
 
 function Login() {
@@ -14,11 +14,14 @@ function Login() {
     }
 
     const [user, setUser] = useState({});
+    const [error, setError] = useState('');
 
     let login = () => {
         axios.post(BASE_URL + 'account/login', user, { headers: { 'token': sessionStorage.getItem('token') } }).then((response) => {
             sessionStorage.setItem('logged', response.data.data.logged)
             dispatch(createToken({ name: response.data.data.name, isLogged: response.data.data.logged, token: response.data.data.token }))
+        }).catch((response)=>{
+            console.log(response)
         })
     }
 
@@ -32,6 +35,7 @@ function Login() {
                         <h1>LOGIN</h1>
                         <span className="traco"></span>
                     </div>
+                    <div>{error}</div>
                     <form onSubmit={e => { e.preventDefault(); login() }}>
                         <div className="login-form mt-3">
                             <div className="mt-2">
