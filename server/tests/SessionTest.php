@@ -9,9 +9,8 @@ class SessionTest extends TestCase
 {
     public function testShouldBeWarningFieldAccessIp()
     {
-        $this->post('/token', [
-            'accessIp' => '123.123.123.123',
-            'accessBrowser' => 'Safari'
+        $this->json('POST','/token', [
+            
         ], [
             'Content-Type' => 'application/json'
         ]);
