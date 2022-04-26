@@ -25,6 +25,7 @@ $ cp mongo-init.sample.js mongo-init.js
 ```
 > **_NOTA:_**  NOTA: Os arquivos copiados estão aplicados no .gitignore, e não causará efeitos de modificação
 
+
 - Criei o network dos containers
 ```
 $ docker network create teste-dev
