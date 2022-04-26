@@ -10,6 +10,10 @@ $ docker pull ertfly/php7.4.9-apache-buster
 ```
 > **_NOTA:_**  A imagem foi criado por mim e pode validar o Dockerfile no link https://github.com/ertfly/dockerfile-php7.4.9-apache-buster
 
+- Faça o pull da imagem **mongo:4.4.6** (Imagem oficial)
+```
+$ docker pull mongo:4.4.6
+```
 
 - Clone o projeto
 ```
@@ -39,6 +43,8 @@ $ docker network create teste-dev
 ```
 
 - Altere o arquivo **docker-compose.yml** substitua na parte **8015** pela porta web disponível na sua máquina
+
+docker-compose.yml
 ```
     ...
     ports:
