@@ -1,6 +1,6 @@
-export default function Dashboard(){
-    if(!sessionStorage.getItem('login')){
-        document.location.href='/account/login'
+export default function Dashboard() {
+    if (!sessionStorage.getItem('logged')) {
+        document.location.href = '/account/login'
     }
     return (
         <div>
