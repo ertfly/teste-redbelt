@@ -15,8 +15,8 @@ class TokenController extends BaseController
     public function create()
     {
         try {
-            $accessIp = Input::json('accessIp', 'accessIp', [FormValidation::REQUIRED]);
-            $accessBrowser = Input::json('accessBrowser', 'accessBrowser', [FormValidation::REQUIRED]);
+            $accessIp = request()->ip();
+            $accessBrowser = request()->userAgent();
             $createdAt = date('Y-m-d H:i:s');
             $token = Strings::token();
 
