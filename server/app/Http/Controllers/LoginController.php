@@ -11,7 +11,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
-class TokenController extends BaseController
+class LoginController extends BaseController
 {
     public function submit()
     {
