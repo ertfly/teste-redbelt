@@ -44,7 +44,7 @@ $ docker network create teste-dev
 
 - Altere o arquivo **docker-compose.yml** substitua na parte **8015** pela porta web disponível na sua máquina
 
-`docker-compose.yml`
+docker-compose.yml
 ```
     ...
     ports:
