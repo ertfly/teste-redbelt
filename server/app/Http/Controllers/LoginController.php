@@ -9,6 +9,7 @@ use App\Libraries\Strings;
 use App\Models\Session;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
 class LoginController extends BaseController
