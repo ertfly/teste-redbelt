@@ -27,20 +27,19 @@ services:
       - teste-net
   teste-db:
     container_name: teste.db
-    image: mongo:4.4.6
-    command: mongod --serviceExecutor adaptive
+    image: mariadb
     restart: always
     ports:
-      - '27022:27017'
+      - '3307:3306'
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=teste
-      - MONGO_INITDB_ROOT_PASSWORD=Teste@3661
-      - MONGO_INITDB_DATABASE=teste
+      MYSQL_ROOT_PASSWORD: Teste@3661
+      MYSQL_DATABASE: teste
+      MYSQL_USER: teste
+      MYSQL_PASSWORD: Teste@3661
+    volumes:
+      - ./db:/var/lib/mysql
     networks:
       - teste-net
-    volumes:
-      - ./db:/data/db
-      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
       
 networks:
   teste-net:
