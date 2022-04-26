@@ -6,25 +6,25 @@ class Api
 {
     public static function ok(?array $data)
     {
-        return [
+        return response()->json([
             'response' => [
                 'action' => 0,
                 'msg' => null,
                 'internal' => null,
             ],
             'data' => $data,
-        ];
+        ]);
     }
 
     public static function error($action, $msg, $internal = null)
     {
-        return [
+        return response()->json([
             'response' => [
                 'action' => $action,
                 'msg' => $msg,
                 'internal' => $internal,
             ],
             'data' => null,
-        ];
+        ]);
     }
 }

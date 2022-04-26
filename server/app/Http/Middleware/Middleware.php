@@ -34,7 +34,6 @@ class Middleware
      */
     public function handle($request, Closure $next)
     {
-
         if (in_array($request->path(), $this->except)) {
             return $next($request);
         }
@@ -70,7 +69,10 @@ class Middleware
                 throw $response->exception;
             }
 
-            // return $response->original;
+            header('Access-Control-Allow-Methods: HEAD, GET, POST, PUT, PATCH, DELETE');
+            header('Access-Control-Allow-Headers: '.$request->header('Access-Control-Request-Headers'));
+            header('Access-Control-Allow-Origin: *');
+
             return Api::ok($response->original);
         } catch (ApiHandler $a) {
             return Api::error($a->getAction(), $a->getMessage(), 'Erro de regra');
