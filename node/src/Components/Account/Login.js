@@ -1,8 +1,11 @@
+import HeaderOut from './HeaderOut'
+
 function Login(){
     return (
-        <div>
-
-        </div>
+        <>
+            <HeaderOut />
+            Aqui é o Login
+        </>
     );
 }
 
