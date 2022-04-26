@@ -12,21 +12,22 @@ let first = false
 function App() {
 
   let dispatch = useDispatch()
-  if(!first){
+  if (!first) {
     if (!sessionStorage.getItem('token')) {
-      axios.post(BASE_URL + 'token').then((response) => {
+      axios.post(BASE_URL + 'token',{},{ withCredentials: true }).then((response) => {
         sessionStorage.setItem('token', response.data.data.token)
         sessionStorage.setItem('logged', false)
         dispatch(createToken({ name: '', isLogged: response.data.logged, token: response.data.token }))
       })
     } else {
-      axios.get(BASE_URL + 'token', { headers: { 'token': sessionStorage.getItem('token') } }).then((response) => {
+      axios.get(BASE_URL + 'token', { headers: { 'token': sessionStorage.getItem('token') }, withCredentials: true }).then((response) => {
         sessionStorage.setItem('logged', response.data.logged)
         dispatch(createToken({ name: '', isLogged: response.data.logged, token: response.data.token }))
       })
     }
+    first = true
   }
-  
+
 
   return (
     <>
