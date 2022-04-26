@@ -26,7 +26,7 @@ function Login() {
                         <h1>LOGIN</h1>
                         <span className="traco"></span>
                     </div>
-                    <form>
+                    <form onSubmit={e => { e.preventDefault(); login() }}>
                         <div className="login-form mt-3">
                             <div className="mt-2">
                                 <input type="text" className="form-control bg-input" placeholder="Usuario" autoFocus="autofocus" onChange={e => setUser({ ...user, username: e.target.value })} />
@@ -35,7 +35,7 @@ function Login() {
                                 <input type="password" className="form-control bg-input" placeholder="Senha" onChange={e => setUser({ ...user, pass: e.target.value })} />
                             </div>
                             <div className="mt-2">
-                                <button className="btn btn-primary btn-access" onClick={() => { login() }}>ACESSAR<i className="fa fa-arrow-right fa-white"></i></button>
+                                <button className="btn btn-primary btn-access">ACESSAR<i className="fa fa-arrow-right fa-white"></i></button>
                             </div>
                         </div>
                     </form>

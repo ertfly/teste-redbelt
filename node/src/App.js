@@ -17,12 +17,12 @@ function App() {
       axios.post(BASE_URL + 'token', {}, { keepAlive: true }).then((response) => {
         sessionStorage.setItem('token', response.data.data.token)
         sessionStorage.setItem('logged', false)
-        dispatch(createToken({ name: '', isLogged: response.data.logged, token: response.data.token }))
+        dispatch(createToken({ name: '', isLogged: response.data.data.logged, token: response.data.data.token }))
       })
     } else {
-      axios.get(BASE_URL + 'token', { headers: { 'token': sessionStorage.getItem('token') }, keepAlive: true }).then((response) => {
-        sessionStorage.setItem('logged', response.data.logged)
-        dispatch(createToken({ name: response.data.name, isLogged: response.data.logged, token: response.data.token }))
+      axios.get(BASE_URL + 'token', { headers: { 'token': sessionStorage.getItem('token') }}).then((response) => {
+        sessionStorage.setItem('logged', response.data.data.logged)
+        dispatch(createToken({ name: response.data.data.name, isLogged: response.data.data.logged, token: response.data.data.token }))
       })
     }
     first = true
