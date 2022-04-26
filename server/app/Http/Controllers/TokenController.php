@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Libraries\Strings;
 use App\Models\Session;
+use App\Models\User;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
 class TokenController extends BaseController
@@ -25,6 +26,7 @@ class TokenController extends BaseController
         $session->save();
 
         return [
+            'name' => '',
             'token' => $token,
             'logged' => false,
         ];
@@ -34,8 +36,10 @@ class TokenController extends BaseController
     {
 
         $sid = Session::where('token', request()->header('token'))->first();
-        
+        $user = User::where('id', $sid->user_id)->first();
+
         return [
+            'name' => $sid->user_id ? $user->name : '',
             'token' => $sid->token,
             'logged' => $sid->isLogged(),
         ];

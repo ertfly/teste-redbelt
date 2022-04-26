@@ -69,9 +69,9 @@ class Middleware
                 throw $response->exception;
             }
 
-            header('Access-Control-Allow-Methods: HEAD, GET, POST, PUT, PATCH, DELETE');
+            /* header('Access-Control-Allow-Methods: HEAD, GET, POST, PUT, PATCH, DELETE');
             header('Access-Control-Allow-Headers: '.$request->header('Access-Control-Request-Headers'));
-            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Origin: *'); */
 
             return Api::ok($response->original);
         } catch (ApiHandler $a) {
