@@ -20,7 +20,7 @@ class MiddlewareTest extends TestCase
 
     public function testShouldBeMethodNotAllowed()
     {
-        $this->get('/token');
+        $this->put('/token');
 
         $this->assertEquals(json_encode([
             'response' => [

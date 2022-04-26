@@ -16,4 +16,18 @@ class SessionTest extends TestCase
             'logged' => false,
         ]);
     }
+
+    public function testShouldBeTokenValid()
+    {
+        $this->json('POST', '/token', [], [
+            'Content-Type' => 'application/json'
+        ]);
+        $responseToken = json_decode($this->response->getContent(), true);
+        $this->json('GET', '/token', [], [
+            'Content-Type' => 'application/json',
+            'token' => $responseToken['data']['token'],
+        ])->seeJson([
+            'action' => 0,
+        ]);
+    }
 }

@@ -17,4 +17,13 @@ class Session extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function isLogged()
+    {
+        if (trim($this->user_id) == '') {
+            return false;
+        }
+
+        return true;
+    }
 }
