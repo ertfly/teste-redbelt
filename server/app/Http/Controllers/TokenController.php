@@ -15,19 +15,20 @@ class TokenController extends BaseController
     public function create()
     {
         try {
-            $app = Input::json('app', 'app', [FormValidation::REQUIRED]);
-            $version = Input::json('version', 'version', [FormValidation::REQUIRED]);
+            $accessIp = Input::json('accessIp', 'accessIp', [FormValidation::REQUIRED]);
+            $accessBrowser = Input::json('accessBrowser', 'accessBrowser', [FormValidation::REQUIRED]);
             $createdAt = date('Y-m-d H:i:s');
             $token = Strings::token();
 
             $session = new Session([
                 'token' => $token,
-                'app' => $app,
-                'version' => $version,
+                'access_ip' => $accessIp,
+                'access_browser' => $accessBrowser,
                 'created_at' => $createdAt,
+                'updated_at' => $createdAt,
             ]);
-
             $session->save();
+            
             return [
                 'token' => $token,
             ];

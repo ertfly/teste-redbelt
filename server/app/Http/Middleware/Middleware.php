@@ -14,16 +14,13 @@ use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Middleware
 {
-    protected $except = [
-    ];
+    protected $except = [];
 
     protected $exceptToken = [
         'token',
     ];
 
-    protected $forceLogin = [
-        
-    ];
+    protected $forceLogin = [];
 
     /**
      * Handle an incoming request.
