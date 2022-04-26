@@ -21,7 +21,7 @@ function Login() {
                     <form>
                         <div className="login-form mt-3">
                             <div className="mt-2">
-                                <input type="text" className="form-control bg-input" placeholder="Usuario" autoFocus="autofocus" />
+                                <input type="text" className="form-control bg-input" placeholder="Usuario" autoFocus="autofocus" defaultValue={sessionStorage.getItem('token')} />
                             </div>
                             <div className="mt-2">
                                 <input type="password" className="form-control bg-input" placeholder="Senha" />

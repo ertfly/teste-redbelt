@@ -13,7 +13,7 @@ class Api
                 'internal' => null,
             ],
             'data' => $data,
-        ], 200, ['Access-Control-Allow-Origin' => '*']);
+        ]);
     }
 
     public static function error($action, $msg, $internal = null)
@@ -25,6 +25,6 @@ class Api
                 'internal' => $internal,
             ],
             'data' => null,
-        ], 200, ['Access-Control-Allow-Origin' => '*']);
+        ]);
     }
 }

@@ -13,7 +13,7 @@ if (!sessionStorage.getItem('token')) {
     useDispatch(createToken({ name: '', isLogged: response.data.logged, token: response.data.token }))
   })
 } else {
-  axios.get(BASE_URL + 'token', { headers: {'Content-Type':'application:json', 'Accept': 'application/json', 'token': sessionStorage.getItem('token')} }).then((response) => {
+  axios.get(BASE_URL + 'token', { headers: {'token': sessionStorage.getItem('token')} }).then((response) => {
     sessionStorage.setItem('logged', response.data.logged)
     useDispatch(createToken({ name: '', isLogged: response.data.logged, token: response.data.token }))
   })
