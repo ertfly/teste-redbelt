@@ -8,7 +8,7 @@ services:
     ports:
       - '8016:80'
     volumes:
-      - ./:/app
+      - ./app/:/app
     networks:
       - teste-net
   teste-db:
