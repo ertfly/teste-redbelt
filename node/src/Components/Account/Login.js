@@ -17,11 +17,17 @@ function Login() {
     const [error, setError] = useState('');
 
     let login = () => {
-        axios.post(BASE_URL + 'account/login', user, { headers: { 'token': sessionStorage.getItem('token') } }).then((response) => {
-            sessionStorage.setItem('logged', response.data.data.logged)
-            dispatch(createToken({ name: response.data.data.name, isLogged: response.data.data.logged, token: response.data.data.token }))
-        }).catch((response)=>{
-            console.log(response)
+        axios.post(BASE_URL + 'account/login', user, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+            response = request.response
+            data = request.data
+
+            if (response.action != 0) {
+                setError(response.msg)
+                return;
+            }
+
+            sessionStorage.setItem('logged', data.logged)
+            dispatch(createToken({ name: data.name, isLogged: data.logged, token: data.token }))
         })
     }
 
