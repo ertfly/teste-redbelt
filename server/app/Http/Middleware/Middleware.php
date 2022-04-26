@@ -3,11 +3,13 @@
 namespace App\Http\Middleware;
 
 use App\Exceptions\ApiHandler;
+use App\Libraries\Api;
 use App\Models\Session;
 use Carbon\Carbon;
 use Closure;
 use Exception;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -18,6 +20,7 @@ class Middleware
 
     protected $exceptToken = [
         'token',
+        'route-not-found-test',
     ];
 
     protected $forceLogin = [];
@@ -67,50 +70,15 @@ class Middleware
                 throw $response->exception;
             }
 
-            return response()->json([
-                'response' => [
-                    'action' => 0,
-                    'msg' => null,
-                    'internal' => null,
-                ],
-                'data' => $response->original,
-            ]);
+            return Api::ok($response->original);
         } catch (ApiHandler $a) {
-            return response()->json([
-                'response' => [
-                    'action' => $a->getAction(),
-                    'msg' => $a->getMessage(),
-                    'internal' => null,
-                ],
-                'data' => null,
-            ]);
-        } catch (MethodNotAllowedHttpException $e) {
-            return response()->json([
-                'response' => [
-                    'action' => ApiHandler::NONE,
-                    'msg' => 'Ocorreu um erro, favor tentar novamente mais tarde.',
-                    'internal' => 'Método do endpoint não permitido',
-                ],
-                'data' => null,
-            ]);
-        } catch (HttpException $e) {
-            return response()->json([
-                'response' => [
-                    'action' => ApiHandler::NONE,
-                    'msg' => 'Ocorreu um erro, favor tentar novamente mais tarde.',
-                    'internal' => 'Rota inválida',
-                ],
-                'data' => null,
-            ]);
-        } catch (Exception $e) {
-            return response()->json([
-                'response' => [
-                    'action' => ApiHandler::NONE,
-                    'msg' => 'Ocorreu um erro, favor tentar novamente mais tarde.',
-                    'internal' => $e->getMessage(),
-                ],
-                'data' => null,
-            ]);
+            return Api::error($a->getAction(), $a->getMessage());
+        } catch (MethodNotAllowedHttpException $b) {
+            return Api::error(ApiHandler::NONE, 'Ocorreu um erro, favor tentar novamente mais tarde.', 'Método do endpoint não permitido');
+        } catch (HttpException $c) {
+            return Api::error(ApiHandler::NONE, 'Ocorreu um erro, favor tentar novamente mais tarde.', 'Rota inválida');
+        } catch (Exception $d) {
+            return Api::error(ApiHandler::NONE, 'Ocorreu um erro, favor tentar novamente mais tarde.', $d->getMessage());
         }
     }
 }
