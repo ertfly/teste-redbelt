@@ -6,21 +6,22 @@ import axios from 'axios'
 import { BASE_URL } from './Config';
 import { createToken } from './Redux/Actions/Session';
 
-if (!sessionStorage.getItem('token')) {
-  axios.post(BASE_URL + 'token').then((response) => {
-    sessionStorage.setItem('token', response.data.data.token)
-    sessionStorage.setItem('logged', false)
-    useDispatch(createToken({ name: '', isLogged: response.data.logged, token: response.data.token }))
-  })
-} else {
-  axios.get(BASE_URL + 'token', { headers: { 'token': sessionStorage.getItem('token') } }).then((response) => {
-    sessionStorage.setItem('logged', response.data.logged)
-    useDispatch(createToken({ name: '', isLogged: response.data.logged, token: response.data.token }))
-  })
-}
-
 
 function App() {
+
+  let dispatch = useDispatch()
+  if (!sessionStorage.getItem('token')) {
+    axios.post(BASE_URL + 'token').then((response) => {
+      sessionStorage.setItem('token', response.data.data.token)
+      sessionStorage.setItem('logged', false)
+      dispatch(createToken({ name: '', isLogged: response.data.logged, token: response.data.token }))
+    })
+  } else {
+    axios.get(BASE_URL + 'token', { headers: { 'token': sessionStorage.getItem('token') } }).then((response) => {
+      sessionStorage.setItem('logged', response.data.logged)
+      dispatch(createToken({ name: '', isLogged: response.data.logged, token: response.data.token }))
+    })
+  }
 
   return (
     <>
