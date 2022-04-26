@@ -1,9 +1,9 @@
-import Header from './Components/Header';
+import HeaderOut from './Components/HeaderOut';
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      <HeaderOut />
     </div>
   );
 }
