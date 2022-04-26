@@ -13,7 +13,10 @@ function Login() {
     const [user, setUser] = useState({});
 
     let login = () => {
-        console.log(user)
+        axios.post(BASE_URL + 'account/login', user, { headers: { 'token': sessionStorage.getItem('token') } }).then((response) => {
+            sessionStorage.setItem('logged', response.data.data.logged)
+            dispatch(createToken({ name: response.data.data.name, isLogged: response.data.data.logged, token: response.data.data.token }))
+        })
     }
 
     return (
