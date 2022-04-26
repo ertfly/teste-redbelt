@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-class SessionTest extends TestCase
+class MiddlewareTest extends TestCase
 {
     public function testShouldBeRouteNotFound()
     {
