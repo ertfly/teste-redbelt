@@ -13,7 +13,7 @@ class SessionTest extends TestCase
             'Content-Type' => 'application/json'
         ])->seeJson([
             'action' => 0,
-            'logged' => false,
+            'logged' => 0,
         ]);
     }
 

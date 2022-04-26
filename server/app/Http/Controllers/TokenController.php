@@ -28,7 +28,7 @@ class TokenController extends BaseController
         return [
             'name' => '',
             'token' => $token,
-            'logged' => false,
+            'logged' => 0,
         ];
     }
 
@@ -41,7 +41,7 @@ class TokenController extends BaseController
         return [
             'name' => $sid->user_id ? $user->name : '',
             'token' => $sid->token,
-            'logged' => $sid->isLogged(),
+            'logged' => intval($sid->isLogged()),
         ];
     }
 }

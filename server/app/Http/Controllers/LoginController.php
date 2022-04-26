@@ -35,7 +35,7 @@ class LoginController extends BaseController
         return [
             'name' => $sid->user_id ? $user->name : '',
             'token' => $sid->token,
-            'logged' => $sid->isLogged(),
+            'logged' => intval($sid->isLogged()),
         ];
     }
 }
