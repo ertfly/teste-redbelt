@@ -72,7 +72,7 @@ class Middleware
 
             return Api::ok($response->original);
         } catch (ApiHandler $a) {
-            return Api::error($a->getAction(), $a->getMessage());
+            return Api::error($a->getAction(), $a->getMessage(), 'Erro de regra');
         } catch (MethodNotAllowedHttpException $b) {
             return Api::error(ApiHandler::NONE, 'Ocorreu um erro, favor tentar novamente mais tarde.', 'Método do endpoint não permitido');
         } catch (HttpException $c) {
