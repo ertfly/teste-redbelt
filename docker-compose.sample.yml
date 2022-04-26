@@ -31,7 +31,7 @@ services:
     command: mongod --serviceExecutor adaptive
     restart: always
     ports:
-      - '27017'
+      - '27022:27017'
     environment:
       - MONGO_INITDB_ROOT_USERNAME=teste
       - MONGO_INITDB_ROOT_PASSWORD=Teste@3661
