@@ -2,20 +2,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createToken } from '../../Redux/Actions/Session';
 import HeaderOut from './../HeaderOut'
 import './Login.css'
-import Axios from 'axios'
+import axios from 'axios'
 import { BASE_URL } from '../../Config';
 
+if (!sessionStorage.getItem('token')) {
+    axios.post(BASE_URL + 'token', {},{headers:{'Content-Type':'application/json'}}).then((response) => {
+        sessionStorage.setItem('token', response.data.data.token)
+        useDispatch(createToken({ name: '', isLogged: response.data.logged, token: response.data.token }))
+    })
+}
+
 function Login() {
-    let dispatch = useDispatch();
     let isLogged = useSelector(state => state.isLogged)
-    let token = useSelector(state => state.token)
     if (isLogged) {
         document.location.href = '/'
-    }
-    if (!token) {
-        Axios.post(BASE_URL + 'token', {}).then((response) => {
-            dispatch(createToken({ name: '', isLogged: response.data.logged, token: response.data.token }))
-        })
     }
 
     return (
