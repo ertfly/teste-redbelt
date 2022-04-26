@@ -1,0 +1,33 @@
+version: '2'
+services:
+  teste:
+    container_name: teste_web
+    image: ertfly/php7.4.9-apache-buster
+    build: .
+    restart: always
+    ports:
+      - '8015:80'
+    volumes:
+      - ./:/app
+    networks:
+      - teste-net
+  teste-db:
+    container_name: teste_db
+    image: mongo:4.4.6
+    command: mongod --serviceExecutor adaptive
+    restart: always
+    ports:
+      - '27022:27017'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=teste
+      - MONGO_INITDB_ROOT_PASSWORD=Teste@3661
+      - MONGO_INITDB_DATABASE=teste
+    networks:
+      - teste-net
+    volumes:
+      - ./db:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      
+networks:
+  teste-net:
+    external: true
