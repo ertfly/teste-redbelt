@@ -1,0 +1,81 @@
+.login {
+    margin-top: 10%;
+    width: 280px;
+}
+
+.login .title .traco {
+    display: inline-block;
+    height: 1px;
+    background: rgb(34, 34, 34);
+    flex: 1;
+}
+
+.login .title h1 {
+    margin: 0 15px;
+    font-size: 18px;
+    color: #fff;
+}
+
+.login .bg-input {
+    background-color: rgb(41, 41, 41);
+    border: none;
+    color: #f2f2f2;
+}
+
+.login .bg-input::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #f2f2f2;
+    opacity: 1;
+    /* Firefox */
+}
+
+.login .bg-input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #f2f2f2;
+}
+
+.login .bg-input::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #f2f2f2;
+}
+
+.login .btn-access {
+    width: 50%;
+    min-width: 90px;
+    height: 42px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-top-style: initial;
+    border-right-style: initial;
+    border-bottom-style: initial;
+    border-left-style: initial;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    color: #fff;
+    font-size: 1em;
+    letter-spacing: 0.2rem;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    justify-content: space-around;
+    -webkit-mask-image: linear-gradient(135deg, rgb(0, 0, 0) 90%, transparent 90%);
+    background-image: linear-gradient(rgb(233, 8, 35), rgb(255, 0, 77));
+}
+
+.login .btn-access i {
+    float: right;
+    color: #fff;
+}
