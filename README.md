@@ -43,10 +43,10 @@ $ cp mongo-init.sample.js mongo-init.js
 $ docker network create teste-dev
 ```
 
-- Altere o arquivo **docker-compose.yml** substitua na parte **8015** pela porta web disponível na sua máquina
+- Altere o arquivo **docker-compose.yml** substitua na parte **8016** pela porta web disponível na sua máquina
 ```
     ...
     ports:
-      - '8015:80'
+      - '8016:80'
     ...
 ``` 

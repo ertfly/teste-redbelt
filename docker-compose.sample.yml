@@ -6,7 +6,7 @@ services:
     build: .
     restart: always
     ports:
-      - '8015:80'
+      - '8016:80'
     volumes:
       - ./:/app
     networks:
@@ -17,7 +17,7 @@ services:
     command: mongod --serviceExecutor adaptive
     restart: always
     ports:
-      - '27022:27017'
+      - '27017'
     environment:
       - MONGO_INITDB_ROOT_USERNAME=teste
       - MONGO_INITDB_ROOT_PASSWORD=Teste@3661
