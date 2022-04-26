@@ -15,8 +15,6 @@ use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 class Middleware
 {
     protected $except = [
-        'terms-of-use',
-        'privacy-policy',
     ];
 
     protected $exceptToken = [
@@ -24,7 +22,7 @@ class Middleware
     ];
 
     protected $forceLogin = [
-        'header',
+        
     ];
 
     /**
@@ -42,10 +40,6 @@ class Middleware
         }
 
         try {
-            if ($request->header('appKey') != 'key') {
-                throw new Exception('this request is not authorization');
-            }
-
             if (!in_array($request->path(), $this->exceptToken)) {
                 $token = $request->header('token');
                 if (trim($token) == '') {
