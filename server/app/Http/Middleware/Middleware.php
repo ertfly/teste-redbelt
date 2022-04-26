@@ -65,13 +65,10 @@ class Middleware
              * @var Response $response
              */
             $response = $next($request);
+            $response->header('Access-Control-Allow-Origin','*');
             if (!is_null($response->exception)) {
                 throw $response->exception;
             }
-
-            /* header('Access-Control-Allow-Methods: HEAD, GET, POST, PUT, PATCH, DELETE');
-            header('Access-Control-Allow-Headers: '.$request->header('Access-Control-Request-Headers'));
-            header('Access-Control-Allow-Origin: *'); */
 
             return Api::ok($response->original);
         } catch (ApiHandler $a) {
