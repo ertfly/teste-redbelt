@@ -1,7 +1,7 @@
-# Requisitos
+# Requisitos #
 - Docker
 
-# Instruções de instalação
+# Instruções de instalação #
 - Acesse a pasta onde irá clonar o projeto
 
 - Clone o projeto
@@ -24,7 +24,7 @@ $ cp docker-compose.sample.yml docker-compose.yml
 $ cp mongo-init.sample.js mongo-init.js
 ```
 ---
-### NOTA: 
+### NOTA: ###
 Os arquivos copiados estão aplicados no .gitignore, e não causará efeitos de modificação
 ---
 
