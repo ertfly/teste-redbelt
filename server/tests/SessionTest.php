@@ -24,4 +24,22 @@ class SessionTest extends TestCase
             'data' => null,
         ]), $this->response->getContent());
     }
+
+    public function testShouldBeWarningFieldAccessBrowser()
+    {
+        $this->json('POST','/token', [
+            'accessIp' => '123'
+        ], [
+            'Content-Type' => 'application/json'
+        ]);
+
+        $this->assertEquals(json_encode([
+            'response' => [
+                'action' => 1,
+                'msg' => 'O campo accessBrowser é obrigatório',
+                'internal' => 'Erro de regra'
+            ],
+            'data' => null,
+        ]), $this->response->getContent());
+    }
 }
