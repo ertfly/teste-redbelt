@@ -25,8 +25,10 @@ $ cp mongo-init.sample.js mongo-init.js
 ```
 
 ---
-**NOTA**
+*NOTA*
+```
 As arquivos copiados estão aplicados no .gitignore, e não causará efeitos de modificação
+```
 ---
 
 - Criei o network dos containers
