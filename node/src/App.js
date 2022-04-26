@@ -14,7 +14,7 @@ function App() {
   let dispatch = useDispatch()
   if (!first) {
     if (!sessionStorage.getItem('token')) {
-      axios.post(BASE_URL + 'token',{},{ keepAlive: true }).then((response) => {
+      axios.post(BASE_URL + 'token', {}, { keepAlive: true }).then((response) => {
         sessionStorage.setItem('token', response.data.data.token)
         sessionStorage.setItem('logged', false)
         dispatch(createToken({ name: '', isLogged: response.data.logged, token: response.data.token }))
@@ -22,7 +22,7 @@ function App() {
     } else {
       axios.get(BASE_URL + 'token', { headers: { 'token': sessionStorage.getItem('token') }, keepAlive: true }).then((response) => {
         sessionStorage.setItem('logged', response.data.logged)
-        dispatch(createToken({ name: '', isLogged: response.data.logged, token: response.data.token }))
+        dispatch(createToken({ name: response.data.name, isLogged: response.data.logged, token: response.data.token }))
       })
     }
     first = true
