@@ -13,7 +13,7 @@ function Login() {
     const [user, setUser] = useState({});
 
     let login = () => {
-        
+        console.log(user)
     }
 
     return (
