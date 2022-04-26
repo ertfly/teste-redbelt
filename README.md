@@ -4,6 +4,8 @@
 # Instruções de instalação #
 - Acesse a pasta onde irá clonar o projeto
 
+- Faça o pull da imagem **ertfly/php7.4.9-apache-buster**
+
 - Clone o projeto
 ```
 $ git clone https://github.com/ertfly/teste-redbelt.git
