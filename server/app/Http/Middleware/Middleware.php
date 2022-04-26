@@ -65,8 +65,8 @@ class Middleware
              * @var Response $response
              */
             $response = $next($request);
-            $response->header('Access-Control-Allow-Methods', 'HEAD, GET, POST, PUT, PATCH, DELETE');
-            $response->header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,Content-Type');
+            // $response->header('Access-Control-Allow-Methods', 'HEAD, GET, POST, PUT, PATCH, DELETE');
+            // $response->header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,Content-Type');
             $response->header('Access-Control-Allow-Origin', '*');
 
             if (!is_null($response->exception)) {
