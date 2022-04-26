@@ -9,7 +9,6 @@ use App\Libraries\Strings;
 use App\Models\Session;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
 class LoginController extends BaseController
@@ -19,7 +18,7 @@ class LoginController extends BaseController
         $username = Input::json('username', 'Nome do usuário', [FormValidation::REQUIRED]);
         $pass = Input::json('pass', 'Senha', [FormValidation::REQUIRED]);
 
-        $user = User::where('username', $username);
+        $user = User::where('username', $username)->first();
         if (!$user) {
             throw new ApiHandler('Usuário ou senha inválidos!');
         }
