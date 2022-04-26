@@ -16,3 +16,5 @@
 //bases
 $router->post('/token', 'TokenController@create');
 $router->get('/token', 'TokenController@detail');
+
+$router->post('/account/login', 'LoginController@submit');
