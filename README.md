@@ -24,8 +24,7 @@ $ cp docker-compose.sample.yml docker-compose.yml
 $ cp mongo-init.sample.js mongo-init.js
 ```
 ---
-### NOTA: ###
-Os arquivos copiados estão aplicados no .gitignore, e não causará efeitos de modificação
+NOTA: Os arquivos copiados estão aplicados no .gitignore, e não causará efeitos de modificação
 ---
 
 - Criei o network dos containers
