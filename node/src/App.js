@@ -25,8 +25,8 @@ function App() {
         dispatch(createToken({ name: '', isLogged: response.data.logged, token: response.data.token }))
       })
     }
-    first = true;
   }
+  
 
   return (
     <>

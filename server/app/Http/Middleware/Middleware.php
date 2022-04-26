@@ -9,8 +9,6 @@ use Carbon\Carbon;
 use Closure;
 use Exception;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
