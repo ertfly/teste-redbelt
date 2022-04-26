@@ -8,8 +8,6 @@ class MiddlewareTest extends TestCase
     {
         $this->get('/route-not-found-test');
 
-        $data = $this->response->getContent();
-
         $this->assertEquals(json_encode([
             'response' => [
                 'action' => 1,
@@ -23,8 +21,6 @@ class MiddlewareTest extends TestCase
     public function testShouldBeMethodNotAllowed()
     {
         $this->get('/token');
-
-        $data = $this->response->getContent();
 
         $this->assertEquals(json_encode([
             'response' => [

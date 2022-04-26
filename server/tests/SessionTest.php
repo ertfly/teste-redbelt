@@ -48,15 +48,10 @@ class SessionTest extends TestCase
             'accessBrowser' => 'Safari'
         ], [
             'Content-Type' => 'application/json'
-        ]);
-
-        $this->assertEquals(json_encode([
+        ])->seeJsonContains([
             'response' => [
-                'action' => 1,
-                'msg' => 'O campo accessBrowser é obrigatório',
-                'internal' => 'Erro de regra'
+                'action' => 0,
             ],
-            'data' => null,
-        ]), $this->response->getContent());
+        ]);
     }
 }
