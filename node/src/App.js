@@ -10,10 +10,10 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/account/login">
-            <Login />
+            <Login key="Login" />
           </Route>
           <Route path="/">
-            <Dashboard />
+            <Dashboard key="Dasboard" />
           </Route>
         </Switch>
       </BrowserRouter>
