@@ -1,0 +1,8 @@
+**.DS_Store
+
+/docker-compose.yml
+/mongo-init.js
+/php_errors.log
+
+/db/*.*
+/db/*
