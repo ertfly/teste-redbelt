@@ -17,14 +17,9 @@ class CreateSessionsTable extends Migration
             $table->id();
             $table->string('token', 64)->unique();
             $table->integer('user_id')->nullable()->index();
-            $table->string('app', 15);
-            $table->string('version', 10);
-            $table->double('lat')->nullable();
-            $table->double('lng')->nullable();
-            $table->longText('setting')->nullable();
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable();
-            $table->string('token_push', 300)->nullable();
+            $table->string('access_ip', 50);
+            $table->string('access_browser', 400);
+            $table->timestamps();
         });
     }
 

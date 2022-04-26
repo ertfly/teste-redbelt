@@ -8,19 +8,9 @@ class User extends Model
 {
     protected $table = 'users';
 
-    const GENDER_MALE = 'M';
-    const GENDER_FEMALE = 'F';
-    const GENDER_INDIFFERENT = 'I';
-
     protected $fillable = [
-        'fullname',
+        'name',
         'email',
         'pass',
-        'username',
-        'phone',
-        'gender',
-        'birth',
-        'photo',
-        'provider_id',
     ];
 }
