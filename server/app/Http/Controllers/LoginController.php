@@ -27,7 +27,7 @@ class LoginController extends BaseController
             throw new ApiHandler('Usuário ou senha inválidos!');
         }
 
-        $sid = Session::where('token', request()->header('token'));
+        $sid = Session::where('token', request()->header('token'))->first();
         $sid->user_id = $user->id;
         $sid->updated_at = Carbon::now();
         $sid->save();
