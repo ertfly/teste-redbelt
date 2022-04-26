@@ -1,4 +1,4 @@
-import HeaderOut from './HeaderOut'
+import HeaderOut from './../HeaderOut'
 
 function Login(){
     return (

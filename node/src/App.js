@@ -7,10 +7,10 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
-          <Route path="/">
+          <Route path="/dashboard">
             <Dashboard />
           </Route>
-          <Route path="/login">
+          <Route path="/account/login">
             <Login />
           </Route>
         </Switch>
