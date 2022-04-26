@@ -1,11 +1,19 @@
 import HeaderOut from './../HeaderOut'
+import { useState } from 'react';
 import './Login.css'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import postLogin from './../../Redux/Actions/Login'
 
 function Login() {
     let isLogged = useSelector(state => state.isLogged)
     if (isLogged) {
         document.location.href = '/'
+    }
+
+    const [user, setUser] = useState({});
+
+    let login = () => {
+        
     }
 
     return (
@@ -21,13 +29,13 @@ function Login() {
                     <form>
                         <div className="login-form mt-3">
                             <div className="mt-2">
-                                <input type="text" className="form-control bg-input" placeholder="Usuario" autoFocus="autofocus" defaultValue={sessionStorage.getItem('token')} />
+                                <input type="text" className="form-control bg-input" placeholder="Usuario" autoFocus="autofocus" onChange={e => setUser({ ...user, username: e.target.value })} />
                             </div>
                             <div className="mt-2">
-                                <input type="password" className="form-control bg-input" placeholder="Senha" />
+                                <input type="password" className="form-control bg-input" placeholder="Senha" onChange={e => setUser({ ...user, pass: e.target.value })} />
                             </div>
                             <div className="mt-2">
-                                <button className="btn btn-primary btn-access">ACESSAR<i className="fa fa-arrow-right fa-white"></i></button>
+                                <button className="btn btn-primary btn-access" onClick={() => { login() }}>ACESSAR<i className="fa fa-arrow-right fa-white"></i></button>
                             </div>
                         </div>
                     </form>

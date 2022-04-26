@@ -9,7 +9,7 @@ const defaultLogin = {
 const Login = (state = defaultLogin, action) => {
     const { type, information = defaultLogin } = action
     switch (type) {
-        case Login_CREATE:
+        case LOGIN_POST:
             return information;
         default:
             return state;
