@@ -13,6 +13,9 @@ class Api
                 'internal' => null,
             ],
             'data' => $data,
+        ], 200, [
+            'Access-Control-Allow-Methods' => 'HEAD, GET, POST, PUT, PATCH, DELETE',
+            'Access-Control-Allow-Origin' => '*',
         ]);
     }
 
@@ -25,6 +28,9 @@ class Api
                 'internal' => $internal,
             ],
             'data' => null,
+        ], 200, [
+            'Access-Control-Allow-Methods' => 'HEAD, GET, POST, PUT, PATCH, DELETE',
+            'Access-Control-Allow-Origin' => '*',
         ]);
     }
 }
