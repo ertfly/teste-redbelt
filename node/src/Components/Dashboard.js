@@ -14,7 +14,7 @@ export default function Dashboard() {
                         <div className="d-flex justify-content-between">
                             <div>
                                 <h2 className="card-title">Dashboard</h2>
-                                <p className="card-text">Bem vindo ao Esparta Core, centralizador de processos e análises de dados.</p>
+                                <p className="card-text">Bem vindo ao teste do Redbelt.</p>
                             </div>
                         </div>
                     </div>
