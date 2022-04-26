@@ -48,10 +48,8 @@ class SessionTest extends TestCase
             'accessBrowser' => 'Safari'
         ], [
             'Content-Type' => 'application/json'
-        ])->seeJsonContains([
-            'response' => [
-                'action' => 0,
-            ],
+        ])->seeJson([
+            'action' => 0,
         ]);
     }
 }

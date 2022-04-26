@@ -4,7 +4,7 @@ namespace App\Libraries;
 
 class Api
 {
-    public static function ok($data)
+    public static function ok(?array $data)
     {
         return [
             'response' => [

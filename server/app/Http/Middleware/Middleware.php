@@ -70,6 +70,7 @@ class Middleware
                 throw $response->exception;
             }
 
+            // return $response->original;
             return Api::ok($response->original);
         } catch (ApiHandler $a) {
             return Api::error($a->getAction(), $a->getMessage(), 'Erro de regra');
