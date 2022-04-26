@@ -50,3 +50,11 @@ $ docker network create teste-dev
       - '8016:80'
     ...
 ``` 
+
+- Caso queira acessar a base de dados você pode usar o software cliente Mongo Compass, basta alterar o arquivo **docker-compose.yml** subistitua na parte **27017** pela porta da sua máquina disponível mais o símbolo **:**, ficando da seguinte maneira **27018:27017** no caso escolhi a porta 27018
+```
+  ...
+    ports:
+      - '27017'
+  ...
+```
