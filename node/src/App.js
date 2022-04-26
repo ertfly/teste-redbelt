@@ -7,11 +7,11 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
           <Route path="/account/login">
             <Login />
+          </Route>
+          <Route path="/">
+            <Dashboard />
           </Route>
         </Switch>
       </BrowserRouter>
