@@ -65,7 +65,6 @@ class Middleware
              * @var Response $response
              */
             $response = $next($request);
-            $response->header('Access-Control-Allow-Origin','*');
             if (!is_null($response->exception)) {
                 throw $response->exception;
             }
