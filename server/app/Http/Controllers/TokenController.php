@@ -31,6 +31,7 @@ class TokenController extends BaseController
             
             return [
                 'token' => $token,
+                'logged' => false,
             ];
         } catch (Exception $e) {
             throw new ApiHandler($e->getMessage(), ApiHandler::NONE);

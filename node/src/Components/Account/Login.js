@@ -2,12 +2,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createToken } from '../../Redux/Actions/Session';
 import HeaderOut from './../HeaderOut'
 import './Login.css'
+import Axios from 'axios'
+import { BASE_URL } from '../../Config';
 
 function Login() {
     let dispatch = useDispatch();
-    if (sessionStorage.getItem('login')) {
+    let isLogged = useSelector(state => state.isLogged)
+    let token = useSelector(state => state.token)
+    if (isLogged) {
         document.location.href = '/'
     }
+    if (!token) {
+        Axios.post(BASE_URL + 'token', {}).then((response) => {
+            dispatch(createToken({ name: '', isLogged: response.data.logged, token: response.data.token }))
+        })
+    }
+
     return (
         <>
             <HeaderOut />
@@ -15,13 +25,13 @@ function Login() {
                 <div className="login d-flex flex-column justify-content-center">
                     <div className="title d-flex flex-row align-items-center mt-3">
                         <span className="traco"></span>
-                        <h1 onClick={() => { dispatch(createToken({ accessIp: '123', accessBrowser: 'teste' })) }}>LOGIN</h1>
+                        <h1>LOGIN</h1>
                         <span className="traco"></span>
                     </div>
                     <form>
                         <div className="login-form mt-3">
                             <div className="mt-2">
-                                <input type="text" className="form-control bg-input" placeholder="Usuario" autoFocus="autofocus" defaultValue={useSelector(state => state.accessIp)} />
+                                <input type="text" className="form-control bg-input" placeholder="Usuario" autoFocus="autofocus" defaultValue={useSelector(state => state.token)} />
                             </div>
                             <div className="mt-2">
                                 <input type="password" className="form-control bg-input" placeholder="Senha" />
