@@ -4,9 +4,21 @@ export default function Dashboard() {
     if (!sessionStorage.getItem('logged')) {
         document.location.href = '/account/login'
     }
+    let breadcrumb = [];
+    breadcrumb.push({
+        text: 'Dashboard',
+        url: null,
+        active: true,
+    })
+    /* breadcrumb.push({
+        text: 'Dashboard',
+        url: null,
+        active: false,
+    }) */
+    
     return (
         <div>
-            <HeaderIn />
+            <HeaderIn breadcrumb={breadcrumb} />
             <div className="container">
                 <div className="card">
                     <div className="card-body">

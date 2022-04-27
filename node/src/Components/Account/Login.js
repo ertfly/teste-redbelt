@@ -21,7 +21,7 @@ function Login() {
             let response = request.data.response
             let data = request.data.data
 
-            if (response.action != 0) {
+            if (response.action !== 0) {
                 setError(response.msg)
                 return;
             }
