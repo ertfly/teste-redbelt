@@ -23,3 +23,4 @@ $router->delete('/account/login', 'LoginController@delete');
 $router->get('/user', 'UserController@list');
 $router->post('/user', 'UserController@create');
 $router->put('/user/{id}', 'UserController@update');
+$router->delete('/user/{id}', 'UserController@delete');

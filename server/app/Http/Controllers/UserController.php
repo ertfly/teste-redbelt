@@ -85,4 +85,13 @@ class UserController extends BaseController
 
         return [];
     }
+
+    public function delete($id){
+        $user = User::where('id', $id)->first();
+        if (!$user) {
+            throw new Exception('Registro não encontrado!');
+        }
+
+        
+    }
 }
