@@ -1,4 +1,8 @@
-function HeaderIn() {
+function HeaderIn(props) {
+    if (typeof (props.breadcrumb) || !props.breadcrumb) {
+        props.breadcrumb = [];
+    }
+    
     return (
         <>
             <header className="d-none d-sm-block">
