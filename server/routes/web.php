@@ -13,23 +13,32 @@
 |
 */
 
+$router->group(['middleware' => 'noToken'], function () use ($router) {
+    $router->post('/token', 'TokenController@create');
+});
+
+$router->group(['middleware' => 'out'], function () use ($router) {
+    $router->get('/token', 'TokenController@detail');
+    $router->post('/account/login', 'LoginController@submit');
+});
+
+$router->group(['middleware' => 'in'], function () use ($router) {
+
+    $router->delete('/account/login', 'LoginController@delete');
+
+    $router->get('/user', 'UserController@list');
+    $router->get('/user/{id}', 'UserController@detail');
+    $router->post('/user', 'UserController@create');
+    $router->put('/user/{id}', 'UserController@update');
+    $router->delete('/user/{id}', 'UserController@delete');
+
+
+    $router->get('/incident', 'IncidentController@list');
+    $router->get('/incident/create', 'IncidentController@createData');
+    $router->get('/incident/{id}', 'IncidentController@detail');
+    $router->post('/incident', 'IncidentController@create');
+    $router->put('/incident/{id}', 'IncidentController@update');
+    $router->delete('/incident/{id}', 'IncidentController@delete');
+});
+
 //bases
-$router->post('/token', 'TokenController@create');
-$router->get('/token', 'TokenController@detail');
-
-$router->post('/account/login', 'LoginController@submit');
-$router->delete('/account/login', 'LoginController@delete');
-
-$router->get('/user', 'UserController@list');
-$router->get('/user/{id}', 'UserController@detail');
-$router->post('/user', 'UserController@create');
-$router->put('/user/{id}', 'UserController@update');
-$router->delete('/user/{id}', 'UserController@delete');
-
-
-$router->get('/incident', 'IncidentController@list');
-$router->get('/incident/create', 'IncidentController@createData');
-$router->get('/incident/{id}', 'IncidentController@detail');
-$router->post('/incident', 'IncidentController@create');
-$router->put('/incident/{id}', 'IncidentController@update');
-$router->delete('/incident/{id}', 'IncidentController@delete');

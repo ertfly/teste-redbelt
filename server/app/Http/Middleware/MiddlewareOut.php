@@ -9,23 +9,12 @@ use Carbon\Carbon;
 use Closure;
 use Exception;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
-class Middleware
+class MiddlewareOut
 {
-    protected $except = [];
-
-    protected $exceptToken = [
-        'token',
-        'route-not-found-test',
-    ];
-
-    protected $forceLogin = [
-        'user',
-        'incident'
-    ];
-
     /**
      * Handle an incoming request.
      *
@@ -35,30 +24,18 @@ class Middleware
      */
     public function handle($request, Closure $next)
     {
-        if (in_array($request->path(), $this->except)) {
-            return $next($request);
-        }
-
         try {
-            if (!in_array($request->path(), $this->exceptToken)) {
-                $token = $request->header('token');
-                if (trim($token) == '') {
-                    throw new Exception('Informar o "token" no header');
-                }
-
-                $sid = Session::where('token', $token)->first();
-                if (!$sid) {
-                    throw new ApiHandler('Sua sessão foi finalizada, realize o acesso novamente', ApiHandler::TOKEN);
-                }
-                $sid->updated_at = Carbon::now();
-                $sid->save();
-
-                if (in_array($request->path(), $this->forceLogin)) {
-                    if (!$sid->user_id) {
-                        throw new ApiHandler('Sua sessão foi finalizada, realize o acesso novamente', ApiHandler::LOGIN);
-                    }
-                }
+            $token = $request->header('token');
+            if (trim($token) == '') {
+                throw new Exception('Informar o "token" no header');
             }
+
+            $sid = Session::where('token', $token)->first();
+            if (!$sid) {
+                throw new ApiHandler('Sua sessão foi finalizada, realize o acesso novamente', ApiHandler::TOKEN);
+            }
+            $sid->updated_at = Carbon::now();
+            $sid->save();
 
             $headers = [
                 'Access-Control-Allow-Origin'      => '*',
