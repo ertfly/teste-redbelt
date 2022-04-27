@@ -6,6 +6,9 @@ use App\Exceptions\ApiHandler;
 use App\Libraries\FormValidation\FormValidation;
 use App\Libraries\Input;
 use App\Models\Incidents;
+use App\Models\IncidentsCritics;
+use App\Models\IncidentsStatus;
+use App\Models\IncidentsTypes;
 
 class IncidentController
 {
@@ -27,7 +30,38 @@ class IncidentController
 
     public function createData()
     {
-        return [];
+        $criticals = [];
+        foreach (IncidentsCritics::all() as $a) {
+            $criticals[] = [
+                'id' => $a->id,
+                'description' => $a->description,
+                'selected' => false,
+            ];
+        }
+
+        $types = [];
+        foreach (IncidentsTypes::all() as $a) {
+            $types[] = [
+                'id' => $a->id,
+                'description' => $a->description,
+                'selected' => false,
+            ];
+        }
+
+        $status = [];
+        foreach (IncidentsStatus::all() as $a) {
+            $status[] = [
+                'id' => $a->id,
+                'description' => $a->description,
+                'selected' => false,
+            ];
+        }
+
+        return [
+            'criticals' => $criticals,
+            'types' => $types,
+            'status' => $status,
+        ];
     }
 
     public function create()
