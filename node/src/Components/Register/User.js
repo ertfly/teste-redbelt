@@ -1,6 +1,10 @@
 import HeaderIn from "../HeaderIn"
 
 function UserList() {
+    if (sessionStorage.getItem('logged')!==1) {
+        document.location.href = '/account/login'
+    }
+
     let breadcrumb = [];
     breadcrumb.push({
         text: 'Dashboard',
@@ -73,6 +77,10 @@ function UserList() {
 }
 
 function UserAdd() {
+    if (sessionStorage.getItem('logged')!==1) {
+        document.location.href = '/account/login'
+    }
+
     let breadcrumb = [];
     breadcrumb.push({
         text: 'Dashboard',

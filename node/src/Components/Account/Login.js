@@ -1,15 +1,14 @@
 import HeaderOut from './../HeaderOut'
 import { useState } from 'react';
 import './Login.css'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createToken } from './../../Redux/Actions/Session';
 import { BASE_URL } from '../../Config'
 import axios from 'axios'
 
 function Login() {
     let dispatch = useDispatch()
-    let isLogged = useSelector(state => state.isLogged)
-    if (isLogged) {
+    if (sessionStorage.getItem('logged') == 1) {
         document.location.href = '/'
     }
 
