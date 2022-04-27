@@ -1,8 +1,15 @@
+import {sid} from './../Redux/Actions/Session'
+
+
 function HeaderIn(props) {
+    let dispatch = useDispatch()
+
     if (typeof (props.breadcrumb) || !props.breadcrumb) {
         props.breadcrumb = [];
     }
+
     
+
     return (
         <>
             <header className="d-none d-sm-block">

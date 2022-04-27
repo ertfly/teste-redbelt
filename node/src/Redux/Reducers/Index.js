@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import Session from './Session';
-import Login from './Login';
+import User from './User';
 
-const Reducers = combineReducers(Session, Login)
+const Reducers = combineReducers(Session, User)
 export default Reducers
