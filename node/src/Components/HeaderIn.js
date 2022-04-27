@@ -89,7 +89,7 @@ function HeaderIn(props) {
                             </ul>
                         </li>
                         <li className="sub">
-                            <a href="#" target="_self">Incidentes</a>
+                            <a href="/incident" target="_self">Incidentes</a>
                         </li>
                     </ul>
                 </div>

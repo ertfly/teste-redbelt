@@ -27,7 +27,7 @@ class IncidentController
                 'description' => $r->description,
                 'critical' => !$critical ? '' : $critical->description,
                 'type' => !$type ? '' : $type->description,
-                'statys' => !$status ? '' : $status->description,
+                'status' => !$status ? '' : $status->description,
             ];
         }
 
