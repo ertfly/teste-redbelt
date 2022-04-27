@@ -4,8 +4,6 @@ function HeaderIn(props) {
         props.breadcrumb = [];
     }
 
-    console.log(props.breadcrumb)
-
     return (
         <>
             <link href="/assets/css/base.in.css" rel="stylesheet" nonce="rAnd0m" />
