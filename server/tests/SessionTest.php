@@ -2,9 +2,6 @@
 
 namespace Tests;
 
-use Laravel\Lumen\Testing\DatabaseMigrations;
-use Laravel\Lumen\Testing\DatabaseTransactions;
-
 class SessionTest extends TestCase
 {
     public function testShouldBeCreateToken()

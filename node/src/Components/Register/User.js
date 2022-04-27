@@ -116,6 +116,8 @@ function UserAdd() {
     }
 
     let [user, setUser] = useState({})
+    let [loader, setLoader] = useState(false)
+    let [error, setError] = useState('')
 
     let breadcrumb = [];
     breadcrumb.push({
@@ -135,12 +137,25 @@ function UserAdd() {
     })
 
     let save = () => {
-        
+        setLoader(true)
+        axios.post(BASE_URL + 'user', user, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+            let response = request.data.response
+            let data = request.data.data
+
+            if (response.action !== 0) {
+                setError(response.msg)
+                return;
+            }
+
+            window.setTimeout(function () { document.location.href = '/register/user' }, 400)
+        })
     }
 
     return (
         <>
+            <Loader show={loader} />
             <HeaderIn breadcrumb={breadcrumb} />
+            <div class={'alert alert-danger' + (error ? ' d-block' : ' d-none')}>{error}</div>
             <div className="container">
                 <div className="card">
                     <div className="card-body">

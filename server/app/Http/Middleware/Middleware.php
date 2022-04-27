@@ -21,7 +21,9 @@ class Middleware
         'route-not-found-test',
     ];
 
-    protected $forceLogin = [];
+    protected $forceLogin = [
+        'user',
+    ];
 
     /**
      * Handle an incoming request.
