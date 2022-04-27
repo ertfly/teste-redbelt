@@ -12,20 +12,27 @@ function UserList() {
     let [rows, setRows] = useState([])
     let [error, setError] = useState('')
     let [loader, setLoader] = useState(true)
+    let [modalDelete, setModalDelete] = useState(false)
+    let [id, setId] = useState(null)
 
-    axios.get(BASE_URL + 'user', { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
-        let response = request.data.response
-        let data = request.data.data
+    let list = () => {
+        axios.get(BASE_URL + 'user', { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+            let response = request.data.response
+            let data = request.data.data
 
-        if (response.action !== 0) {
+            if (response.action !== 0) {
+                setLoader(false)
+                setError(response.msg)
+                return;
+            }
+
             setLoader(false)
-            setError(response.msg)
-            return;
-        }
+            setRows(data.rows)
+        })
+    }
 
-        setLoader(false)
-        setRows(data.rows)
-    })
+    list()
+
 
     let breadcrumb = [];
     breadcrumb.push({
@@ -46,17 +53,37 @@ function UserList() {
             let data = request.data.data
 
             if (response.action !== 0) {
+                setLoader(false)
                 setError(response.msg)
                 return;
             }
 
-            window.setTimeout(function () { document.location.href = '/register/user' }, 400)
+            setModalDelete(false)
+            list()
         })
     }
 
     return (
         <>
             <Loader show={loader} />
+            <div className={'modal fade' + (modalDelete ? ' show' : '') + (modalDelete ? ' d-block' : '')} tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h4 className="modal-title">ATENÇÃO!</h4>
+                            <button type="button" className="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div className="modal-body">
+                            <p className="text-danger">Deseja realmente excluir este registro?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success" onClick={() => { del(id) }}>Sim</button>
+                            <button type="button" class="btn btn-danger" onClick={() => { setModalDelete(false) }}>Não</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class={'modal-backdrop fade show' + (modalDelete ? '' : ' d-none')} id="backdrop"></div>
             <HeaderIn breadcrumb={breadcrumb} />
             <div class={'alert alert-danger mt-3' + (error ? ' d-block' : ' d-none')}>{error}</div>
             <div className="container">
@@ -106,7 +133,7 @@ function UserList() {
                                                             <td>{a.username}</td>
                                                             <td className="text-right">
                                                                 <a href="/" className="btn btn-primary btn-sm mr-1" title="Editar registro"><i className="fa fa-pencil fa-white"></i></a>
-                                                                <button type="button" className="btn btn-danger btn-sm" title="Excluir registro" onClick={(e) => { del(a.id) }}><i className="fa fa-trash fa-white"></i></button>
+                                                                <button type="button" className="btn btn-danger btn-sm" title="Excluir registro" onClick={(e) => { setId(a.id); setModalDelete(true) }}><i className="fa fa-trash fa-white"></i></button>
                                                             </td>
                                                         </tr>
                                                     </>
