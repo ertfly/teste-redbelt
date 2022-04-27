@@ -17,9 +17,27 @@ class CreateIncidentsTable extends Migration
             $table->id();
             $table->string('title', 250)->index();
             $table->text('description');
-            $table->integer('criticality_id')->index();
+            $table->integer('critical_id')->index();
             $table->integer('type_id')->index();
             $table->integer('status_id')->index();
+            $table->timestamps();
+        });
+
+        Schema::create('incidents_critics', function (Blueprint $table) {
+            $table->id();
+            $table->string('description', 100)->index();
+            $table->timestamps();
+        });
+
+        Schema::create('incidents_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('description', 100)->index();
+            $table->timestamps();
+        });
+
+        Schema::create('incidents_status', function (Blueprint $table) {
+            $table->id();
+            $table->string('description', 100)->index();
             $table->timestamps();
         });
     }
@@ -32,5 +50,8 @@ class CreateIncidentsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('incidents');
+        Schema::dropIfExists('incidents_critics');
+        Schema::dropIfExists('incidents_types');
+        Schema::dropIfExists('incidents_status');
     }
 }
