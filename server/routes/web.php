@@ -25,3 +25,11 @@ $router->get('/user/{id}', 'UserController@detail');
 $router->post('/user', 'UserController@create');
 $router->put('/user/{id}', 'UserController@update');
 $router->delete('/user/{id}', 'UserController@delete');
+
+
+$router->get('/incident', 'IncidentController@list');
+$router->get('/incident/create', 'IncidentController@createData');
+$router->get('/incident/{id}', 'IncidentController@detail');
+$router->post('/incident', 'IncidentController@create');
+$router->put('/incident/{id}', 'IncidentController@update');
+$router->delete('/incident/{id}', 'IncidentController@delete');
