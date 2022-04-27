@@ -25,6 +25,13 @@ function Login() {
             let data = request.data.data
 
             if (response.action !== 0) {
+                if (response.action == 4) {
+                    sessionStorage.removeItem('token');
+                    sessionStorage.removeItem('name');
+                    sessionStorage.removeItem('logged');
+                    document.location.href = '/account/login'
+                }
+                setLoader(false)
                 setError(response.msg)
                 return;
             }

@@ -106,7 +106,7 @@ function UserList() {
                                                             <td>{a.username}</td>
                                                             <td className="text-right">
                                                                 <a href="/" className="btn btn-primary btn-sm mr-1" title="Editar registro"><i className="fa fa-pencil fa-white"></i></a>
-                                                                <button type="button" className="btn btn-danger btn-sm" title="Excluir registro"><i className="fa fa-trash fa-white"></i></button>
+                                                                <button type="button" className="btn btn-danger btn-sm" title="Excluir registro" onClick={(e) => { del(a.id) }}><i className="fa fa-trash fa-white"></i></button>
                                                             </td>
                                                         </tr>
                                                     </>
