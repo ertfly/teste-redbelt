@@ -1,5 +1,4 @@
 import HeaderIn from "./HeaderIn";
-import './BaseIn.css'
 
 export default function Dashboard() {
     if (!sessionStorage.getItem('logged')) {

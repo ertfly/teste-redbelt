@@ -10,6 +10,7 @@ function HeaderIn(props) {
 
     return (
         <>
+            <link href="/assets/css/base.in.css" rel="stylesheet" nonce="rAnd0m" />
             <header className="d-none d-sm-block">
                 <div className="container">
                     <div className="row">
