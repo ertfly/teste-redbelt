@@ -1,10 +1,10 @@
 function HeaderIn(props) {
 
-    console.log(props.breadcrumb)
-
     if (typeof (props.breadcrumb) != 'undefined' || !props.breadcrumb) {
         props.breadcrumb = [];
     }
+
+    console.log(props.breadcrumb)
 
     return (
         <>
