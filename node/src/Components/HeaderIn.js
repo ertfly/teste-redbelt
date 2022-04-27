@@ -22,8 +22,8 @@ function HeaderIn(props) {
                             <p className="text-danger">Deseja realmente se desconectar?</p>
                         </div>
                         <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Sim</button>
                             <button type="button" class="btn btn-danger" onClick={() => { setModalClose(false) }}>Não</button>
-                            <button type="submit" class="btn btn-primary">Sim</button>
                         </div>
                     </div>
                 </div>
