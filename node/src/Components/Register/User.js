@@ -39,6 +39,21 @@ function UserList() {
         active: true,
     })
 
+    let del = (id) => {
+        setLoader(true)
+        axios.delete(BASE_URL + 'user/' + id, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+            let response = request.data.response
+            let data = request.data.data
+
+            if (response.action !== 0) {
+                setError(response.msg)
+                return;
+            }
+
+            window.setTimeout(function () { document.location.href = '/register/user' }, 400)
+        })
+    }
+
     return (
         <>
             <Loader show={loader} />
