@@ -1,8 +1,8 @@
-import HeaderIn from "../HeaderIn"
+import HeaderIn from "./HeaderIn"
 import { useEffect, useState } from "react";
-import Loader from "../Loader";
+import Loader from "./Loader";
 import axios from "axios";
-import { BASE_URL } from './../../Config'
+import { BASE_URL } from './../Config'
 import { useParams } from 'react-router-dom'
 
 function IncidentList() {
@@ -17,7 +17,7 @@ function IncidentList() {
     let [id, setId] = useState(null)
 
     let list = () => {
-        axios.get(BASE_URL + 'user', { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+        axios.get(BASE_URL + 'incident', { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
             let response = request.data.response
             let data = request.data.data
 
@@ -175,7 +175,7 @@ function IncidentAdd() {
         active: false,
     })
     breadcrumb.push({
-        text: 'Cadastro - Usuários',
+        text: 'Incidentes',
         url: '/incident',
         active: false,
     })
@@ -187,7 +187,7 @@ function IncidentAdd() {
 
     let save = () => {
         setLoader(true)
-        axios.post(BASE_URL + 'user', user, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+        axios.post(BASE_URL + 'incident', user, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
             let response = request.data.response
             let data = request.data.data
 
@@ -279,7 +279,7 @@ function IncidentEdit() {
         active: false,
     })
     breadcrumb.push({
-        text: 'Cadastro - Usuários',
+        text: 'Incidentes',
         url: '/incident',
         active: false,
     })
@@ -290,7 +290,7 @@ function IncidentEdit() {
     })
 
     useEffect(() => {
-        axios.get(BASE_URL + 'user/' + id, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+        axios.get(BASE_URL + 'incident/' + id, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
             let response = request.data.response
             let data = request.data.data
 
@@ -310,7 +310,7 @@ function IncidentEdit() {
 
     let save = () => {
         setLoader(true)
-        axios.put(BASE_URL + 'user/' + id, user, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+        axios.put(BASE_URL + 'incident/' + id, user, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
             let response = request.data.response
             let data = request.data.data
 

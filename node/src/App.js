@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from './Components/Account/Login'
 import Dashboard from './Components/Dashboard'
 import { UserList, UserAdd, UserEdit } from './Components/Register/User'
+import { IncidentList, IncidentAdd, IncidentEdit } from './Components/Incident'
 import axios from 'axios'
 import { BASE_URL } from './Config';
 
@@ -31,6 +32,15 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
+          <Route path="/incident">
+            <IncidentList key="IncidentList" />
+          </Route>
+          <Route path="/incident/add">
+            <IncidentAdd key="IncidentAdd" />
+          </Route>
+          <Route path="/incident/edit/:id">
+            <IncidentEdit key="IncidentEdit" />
+          </Route>
           <Route path="/register/user/edit/:id">
             <UserEdit key="UserEdit" />
           </Route>
