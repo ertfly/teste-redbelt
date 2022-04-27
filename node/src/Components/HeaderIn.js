@@ -1,14 +1,14 @@
-import {sid} from './../Redux/Actions/Session'
+import { useSelector } from 'react-redux';
 
 
 function HeaderIn(props) {
-    let dispatch = useDispatch()
+    let name = useSelector(state => state.name)
 
     if (typeof (props.breadcrumb) || !props.breadcrumb) {
         props.breadcrumb = [];
     }
 
-    
+
 
     return (
         <>
@@ -29,7 +29,7 @@ function HeaderIn(props) {
                                             <img src="/assets/img/user.png" className="img-fluid rounded-circle" />
                                         </div>
                                         <div className="profile-info d-flex flex-column align-items-end ml-2">
-                                            <a href="/" className="info1">Nome</a>
+                                            <a href="/" className="info1">{sessionStorage.getItem('name')}</a>
                                             <a href="javascript:void(0)" className="info2">Sair</a>
                                         </div>
                                     </div>
