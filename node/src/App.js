@@ -10,7 +10,8 @@ let first = false
 
 function App() {
 
-  if (!first) {
+  sessionStorage.setItem('logged',0);
+  /* if (!first) {
     if (!sessionStorage.getItem('token')) {
       axios.post(BASE_URL + 'token').then((response) => {
         sessionStorage.setItem('name', response.data.data.name)
@@ -24,7 +25,7 @@ function App() {
       })
     }
     first = true
-  }
+  } */
 
 
   return (
