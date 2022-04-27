@@ -2,13 +2,10 @@ import HeaderOut from './../HeaderOut'
 import Loader from '../Loader';
 import { useState } from 'react';
 import './Login.css'
-import { useDispatch } from 'react-redux';
-import { createToken } from './../../Redux/Actions/Session';
 import { BASE_URL } from '../../Config'
 import axios from 'axios'
 
 function Login() {
-    let dispatch = useDispatch()
     if (sessionStorage.getItem('logged') == 1) {
         document.location.href = '/'
     }
@@ -38,7 +35,6 @@ function Login() {
 
             sessionStorage.setItem('logged', data.logged)
             sessionStorage.setItem('name', data.name)
-            dispatch(createToken({ name: data.name, isLogged: data.logged, token: data.token }))
             window.setTimeout(function () { document.location.href = '/' }, 400)
         })
     }
