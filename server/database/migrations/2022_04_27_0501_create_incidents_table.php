@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\IncidentsCritics;
+use App\Models\IncidentsStatus;
+use App\Models\IncidentsTypes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -28,20 +31,36 @@ class CreateIncidentsTable extends Migration
             $table->string('description', 100)->index();
             $table->timestamps();
         });
+        foreach (['Alta', 'Média', 'Baixa'] as $a) {
+            $row = new IncidentsCritics([
+                'description' => $a,
+            ]);
+            $row->save();
+        }
 
         Schema::create('incidents_types', function (Blueprint $table) {
             $table->id();
             $table->string('description', 100)->index();
             $table->timestamps();
         });
+        foreach (['Alarme', 'Incidente', 'Outros'] as $a) {
+            $row = new IncidentsTypes([
+                'description' => $a,
+            ]);
+            $row->save();
+        }
 
         Schema::create('incidents_status', function (Blueprint $table) {
             $table->id();
             $table->string('description', 100)->index();
             $table->timestamps();
         });
-
-        
+        foreach (['Ativo', 'Inativo'] as $a) {
+            $row = new IncidentsStatus([
+                'description' => $a,
+            ]);
+            $row->save();
+        }
     }
 
     /**
