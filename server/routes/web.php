@@ -13,16 +13,16 @@
 |
 */
 
-$router->group(['middleware' => 'noToken'], function () use ($router) {
+$router->group(['prefix' => '/', 'middleware' => 'noToken'], function () use ($router) {
     $router->post('/token', 'TokenController@create');
 });
 
-$router->group(['middleware' => 'out'], function () use ($router) {
+$router->group(['prefix' => '/', 'middleware' => 'out'], function () use ($router) {
     $router->get('/token', 'TokenController@detail');
     $router->post('/account/login', 'LoginController@submit');
 });
 
-$router->group(['middleware' => 'in'], function () use ($router) {
+$router->group(['prefix' => '/', 'middleware' => 'in'], function () use ($router) {
 
     $router->delete('/account/login', 'LoginController@delete');
 
