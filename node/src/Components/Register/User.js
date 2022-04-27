@@ -16,7 +16,7 @@ function UserList() {
     return (
         <>
             <HeaderIn breadcrumb={breadcrumb} />
-            <div className="container-fluid">
+            <div className="container">
                 <div className="card">
                     <div className="card-body">
                         <div className="d-flex justify-content-between">
