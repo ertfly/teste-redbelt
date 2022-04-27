@@ -11,6 +11,24 @@ function HeaderIn(props) {
     return (
         <>
             <link href="/assets/css/base.in.css" rel="stylesheet" nonce="rAnd0m" />
+            <div className={'modal fade' + (modalClose ? ' show' : '') + (modalClose ? ' d-block' : '')} tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h4 className="modal-title">ATENÇÃO!</h4>
+                            <button type="button" className="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div className="modal-body">
+                            <p className="text-danger">Deseja realmente se desconectar?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" onClick={() => { setModalClose(false) }}>Não</button>
+                            <button type="submit" class="btn btn-primary">Sim</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class={'modal-backdrop fade show' + (modalClose ? '' : ' d-none')} id="backdrop"></div>
             <header className="d-none d-sm-block">
                 <div className="container">
                     <div className="row">
@@ -29,7 +47,7 @@ function HeaderIn(props) {
                                         </div>
                                         <div className="profile-info d-flex flex-column align-items-end ml-2">
                                             <a href="/" className="info1">{sessionStorage.getItem('name')}</a>
-                                            <a href="#close" className="info2" onClick={setModalClose(true)}>Sair</a>
+                                            <a href="#close" className="info2" onClick={() => { setModalClose(true) }}>Sair</a>
                                         </div>
                                     </div>
                                 </div>

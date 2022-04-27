@@ -5,17 +5,17 @@ body {
 * {
     font-family: 'Roboto', sans-serif;
     font-weight: 100;
-    font-size: 14px;
-    color: rgb(86, 100, 112);
+    font-size  : 14px;
+    color      : rgb(86, 100, 112);
 }
 
 header {
     background: #292929;
-    padding: 20px 0;
+    padding   : 20px 0;
 }
 
 header .logo a {
-    display: inline-block;
+    display       : inline-block;
     vertical-align: middle;
 }
 
@@ -28,15 +28,15 @@ header .menu {
 }
 
 header .menu .menu-item {
-    color: #fff;
-    font-size: 16px;
+    color          : #fff;
+    font-size      : 16px;
     text-decoration: none;
-    margin-right: 30px;
+    margin-right   : 30px;
 }
 
 header .menu .menu-item:hover {
     text-decoration: none;
-    font-weight: 400;
+    font-weight    : 400;
 }
 
 header .menu .menu-item:last-child {
@@ -64,14 +64,14 @@ header .profile .profile-info .info2 {
 }
 
 .breadcrumb-bg .breadcrumb-item.active {
-    color: #0a0a0a;
+    color      : #0a0a0a;
     font-weight: 500;
 }
 
 .tabcontent-border {
-    border: 1px solid #ddd;
+    border    : 1px solid #ddd;
     border-top: 0px;
-    padding: 20px;
+    padding   : 20px;
 }
 
 .fa-white {
@@ -80,36 +80,36 @@ header .profile .profile-info .info2 {
 
 .pagination .active a {
     font-weight: bold;
-    color: rgb(86, 100, 112);
+    color      : rgb(86, 100, 112);
 }
 
 .log-text {
     background: #333;
-    color: #fff;
-    padding: 10px;
-    overflow: auto;
-    height: 100px;
-    width: 500px;
-    margin: 0;
+    color     : #fff;
+    padding   : 10px;
+    overflow  : auto;
+    height    : 100px;
+    width     : 500px;
+    margin    : 0;
 }
 
 .menu-inferior {
     background-color: #214157;
-    box-shadow: inset -1px 4px 5px #375a5952;
-    height: 42px;
+    box-shadow      : inset -1px 4px 5px #375a5952;
+    height          : 42px;
 }
 
 .menu-inferior ul {
-    list-style: none;
-    display: flex;
+    list-style    : none;
+    display       : flex;
     flex-direction: row;
-    margin: 0;
-    padding: 0;
+    margin        : 0;
+    padding       : 0;
 }
 
 .menu-inferior li {
-    margin: 0;
-    padding: 0 10px;
+    margin             : 0;
+    padding            : 0 10px;
     transition-duration: 300ms;
 }
 
@@ -117,7 +117,7 @@ header .profile .profile-info .info2 {
     background-color: #77a5b8;
 }
 
-.menu-inferior li.sub:hover > ul {
+.menu-inferior li.sub:hover>ul {
     display: block !important;
 }
 
@@ -126,23 +126,24 @@ header .profile .profile-info .info2 {
 }
 
 .menu-inferior li.sub ul {
-    z-index: 10;
-    display: none;
+    z-index   : 10;
+    display   : none;
     background: #f9f9f9;
-    left: 0;
-    top: 42px;
-    position: absolute;
+    left      : 0;
+    top       : 42px;
+    position  : absolute;
     box-shadow: 0px 2px 3px 0px #ccc;
 }
 
 .menu-inferior li.sub.lado ul {
     background: #f9f9f9;
-    left: 190px;
-    top: 0;
+    left      : 190px;
+    top       : 0;
 }
 
 .menu-inferior li.sub ul li:hover {
-    background: #d1d1d1;;
+    background: #d1d1d1;
+    ;
 }
 
 .menu-inferior li.sub ul li a {
@@ -151,12 +152,12 @@ header .profile .profile-info .info2 {
 }
 
 .menu-inferior li a {
-    display: block;
+    display        : block;
     text-decoration: none;
-    font-size: 14px;
-    color: black;
-    height: 42px;
-    line-height: 41px;
+    font-size      : 14px;
+    color          : black;
+    height         : 42px;
+    line-height    : 41px;
 }
 
 .menu-inferior li.sub a {
@@ -164,35 +165,35 @@ header .profile .profile-info .info2 {
 }
 
 .menu-inferior li a i {
-    color: #566470;
-    display: inline-block;
+    color       : #566470;
+    display     : inline-block;
     margin-right: 8px;
-    margin-left: 10px;
+    margin-left : 10px;
 }
 
 .autocomplete {
     /*the container must be positioned relative:*/
     position: relative;
-    display: inline-block;
+    display : inline-block;
 }
 
 .autocomplete-items {
-    position: absolute;
-    border: 1px solid #d4d4d4;
-    border-bottom: none;
-    border-top: none;
-    z-index: 99;
+    position                                                               : absolute;
+    border                                                                 : 1px solid #d4d4d4;
+    border-bottom                                                          : none;
+    border-top                                                             : none;
+    z-index                                                                : 99;
     /*position the autocomplete items to be the same width as the container:*/
-    top: 100%;
-    left: 0;
-    right: 0;
+    top                                                                    : 100%;
+    left                                                                   : 0;
+    right                                                                  : 0;
 }
 
 .autocomplete-items div {
-    padding: 10px;
-    cursor: pointer;
+    padding         : 10px;
+    cursor          : pointer;
     background-color: #fff;
-    border-bottom: 1px solid #d4d4d4;
+    border-bottom   : 1px solid #d4d4d4;
 }
 
 .autocomplete-items div:hover {
@@ -203,35 +204,35 @@ header .profile .profile-info .info2 {
 .autocomplete-active {
     /*when navigating through the items using the arrow keys:*/
     background-color: DodgerBlue !important;
-    color: #ffffff;
+    color           : #ffffff;
 }
 
 .menu-mobile {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width:100%;
-    z-index: 10;
+    display         : none;
+    position        : fixed;
+    top             : 0;
+    left            : 0;
+    bottom          : 0;
+    width           : 100%;
+    z-index         : 10;
     background-color: #214157;
-    box-shadow: inset -1px 4px 5px #375a5952;
-    overflow: auto;
+    box-shadow      : inset -1px 4px 5px #375a5952;
+    overflow        : auto;
 }
 
 .menu-mobile ul {
-    list-style: none;
-    display: flex;
+    list-style    : none;
+    display       : flex;
     flex-direction: column;
-    margin: 0;
-    padding: 0;
-    width: 100%;
+    margin        : 0;
+    padding       : 0;
+    width         : 100%;
 }
 
 .menu-mobile li {
-    margin: 0;
+    margin             : 0;
     transition-duration: 300ms;
-    width: 100%;
+    width              : 100%;
 }
 
 .menu-mobile li a {
@@ -242,7 +243,7 @@ header .profile .profile-info .info2 {
     background-color: #77a5b8;
 }
 
-.menu-mobile li.sub:hover > ul {
+.menu-mobile li.sub:hover>ul {
     display: block !important;
 }
 
@@ -251,20 +252,21 @@ header .profile .profile-info .info2 {
 }
 
 .menu-mobile li.sub ul {
-    z-index: 10;
-    display: none;
+    z-index   : 10;
+    display   : none;
     background: #f9f9f9;
     box-shadow: 0px 2px 3px 0px #ccc;
 }
 
 .menu-mobile li.sub.lado ul {
     background: #f9f9f9;
-    left: 190px;
-    top: 0;
+    left      : 190px;
+    top       : 0;
 }
 
 .menu-mobile li.sub ul li:hover {
-    background: #d1d1d1;;
+    background: #d1d1d1;
+    ;
 }
 
 .menu-mobile li.sub ul li a {
@@ -273,12 +275,12 @@ header .profile .profile-info .info2 {
 }
 
 .menu-mobile li a {
-    display: block;
+    display        : block;
     text-decoration: none;
-    font-size: 14px;
-    color: black;
-    height: 42px;
-    line-height: 41px;
+    font-size      : 14px;
+    color          : black;
+    height         : 42px;
+    line-height    : 41px;
 }
 
 .menu-mobile li.sub a {
@@ -286,71 +288,101 @@ header .profile .profile-info .info2 {
 }
 
 .menu-mobile li a i {
-    color: #566470;
-    display: inline-block;
+    color       : #566470;
+    display     : inline-block;
     margin-right: 8px;
-    margin-left: 10px;
+    margin-left : 10px;
 }
 
 /* The switch - the box around the slider */
 .switch {
     position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  /* Hide default HTML checkbox */
-  .switch input {
+    display : inline-block;
+    width   : 60px;
+    height  : 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
     opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* The slider */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
+    width  : 0;
+    height : 0;
+}
+
+/* The slider */
+.slider {
+    position          : absolute;
+    cursor            : pointer;
+    top               : 0;
+    left              : 0;
+    right             : 0;
+    bottom            : 0;
+    background-color  : #ccc;
     -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
+    transition        : .4s;
+}
+
+.slider:before {
+    position          : absolute;
+    content           : "";
+    height            : 26px;
+    width             : 26px;
+    left              : 4px;
+    bottom            : 4px;
+    background-color  : white;
     -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
+    transition        : .4s;
+}
+
+input:checked+.slider {
     background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
+}
+
+input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
+}
+
+input:checked+.slider:before {
     -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
+    -ms-transform    : translateX(26px);
+    transform        : translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
     border-radius: 34px;
-  }
-  
-  .slider.round:before {
+}
+
+.slider.round:before {
     border-radius: 50%;
-  }
+}
+
+.custom-loader-bg {
+    position        : fixed;
+    width           : 100%;
+    height          : 100%;
+    opacity         : 0.70;
+    filter          : alpha(opacity=60);
+    background-color: #000;
+    top             : 0;
+    left            : 0;
+    right           : 0;
+    bottom          : 0;
+    z-index         : 8000;
+}
+
+.custom-loader {
+    position             : fixed;
+    top                  : 40%;
+    left                 : 50%;
+    margin-left          : -32px;
+    margin-top           : -32px;
+    background-color     : #fff;
+    width                : 64px;
+    height               : 64px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius   : 12px;
+    border-radius        : 12px;
+    z-index              : 8001;
+    overflow             : auto;
+}
