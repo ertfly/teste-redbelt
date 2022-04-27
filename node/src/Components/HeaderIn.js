@@ -1,12 +1,18 @@
+import { useState } from "react";
+
 function HeaderIn(props) {
 
     if (typeof (props.breadcrumb) == 'undefined' || !props.breadcrumb) {
         props.breadcrumb = [];
     }
 
+    const [modalClose, setModalClose] = useState(false)
+
     return (
         <>
             <link href="/assets/css/base.in.css" rel="stylesheet" nonce="rAnd0m" />
+            
+
             <header className="d-none d-sm-block">
                 <div className="container">
                     <div className="row">
@@ -25,7 +31,7 @@ function HeaderIn(props) {
                                         </div>
                                         <div className="profile-info d-flex flex-column align-items-end ml-2">
                                             <a href="/" className="info1">{sessionStorage.getItem('name')}</a>
-                                            <a href="/" className="info2">Sair</a>
+                                            <a href="#close" className="info2" onClick={setModalClose(true)}>Sair</a>
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +73,7 @@ function HeaderIn(props) {
                                         <li className="breadcrumb-item"><a href={item.url}>{item.text}</a></li>
                                     </>
                                 )}
-                                
+
                             </>
                         ))}
                     </ol>

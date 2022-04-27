@@ -1,4 +1,5 @@
 import HeaderOut from './../HeaderOut'
+import Loader from '../Loader';
 import { useState } from 'react';
 import './Login.css'
 import { useDispatch } from 'react-redux';
@@ -12,10 +13,13 @@ function Login() {
         document.location.href = '/'
     }
 
-    const [user, setUser] = useState({});
-    const [error, setError] = useState('');
+    const [user, setUser] = useState({})
+    const [error, setError] = useState('')
+
+    const [loader, setLoader] = useState(false)
 
     let login = () => {
+        setLoader(true)
         axios.post(BASE_URL + 'account/login', user, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
             let response = request.data.response
             let data = request.data.data
@@ -34,6 +38,7 @@ function Login() {
 
     return (
         <>
+            <Loader show={loader} />
             <HeaderOut />
             <div className="h-100 d-flex align-items-center justify-content-center">
                 <div className="login d-flex flex-column justify-content-center">
