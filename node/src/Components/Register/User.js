@@ -90,7 +90,7 @@ function UserList() {
                                                             <td>{a.name}</td>
                                                             <td>{a.username}</td>
                                                             <td className="text-right">
-                                                                <a href="/" className="btn btn-primary btn-sm" title="Editar registro"><i className="fa fa-pencil fa-white"></i></a>
+                                                                <a href="/" className="btn btn-primary btn-sm mr-1" title="Editar registro"><i className="fa fa-pencil fa-white"></i></a>
                                                                 <button type="button" className="btn btn-danger btn-sm" title="Excluir registro"><i className="fa fa-trash fa-white"></i></button>
                                                             </td>
                                                         </tr>
