@@ -9,6 +9,7 @@ use App\Models\Incidents;
 use App\Models\IncidentsCritics;
 use App\Models\IncidentsStatus;
 use App\Models\IncidentsTypes;
+use Exception;
 
 class IncidentController
 {
@@ -73,66 +74,75 @@ class IncidentController
 
     public function create()
     {
-        $title = Input::json('title', 'Título', [FormValidation::REQUIRED]);
-        $description = Input::json('description', 'Descrição', [FormValidation::REQUIRED]);
+        try {
+            $title = Input::json('title', 'Título', [FormValidation::REQUIRED]);
+            $description = Input::json('description', 'Descrição', [FormValidation::REQUIRED]);
 
-        $critical = IncidentsCritics::where('id', Input::json('criticalId', 'Criticidade', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
-        if (!$critical) {
-            throw new ApiHandler('Criticidade inválida!');
+            $critical = IncidentsCritics::where('id', Input::json('criticalId', 'Criticidade', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
+            if (!$critical) {
+                throw new ApiHandler('Criticidade inválida!');
+            }
+
+            $type = IncidentsTypes::where('id', Input::json('typeId', 'Tipo', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
+            if (!$type) {
+                throw new ApiHandler('Tipo inválida!');
+            }
+
+            $status = IncidentsStatus::where('id', Input::json('statusId', 'Status', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
+            if (!$status) {
+                throw new ApiHandler('Status inválida!');
+            }
+
+            $user = new Incidents([
+                'title' => $title,
+                'description' => $description,
+                'critical_id' => $critical->id,
+                'type_id' => $type->id,
+                'status_id' => $status->id,
+            ]);
+            $user->save();
+        } catch (Exception $e) {
+            throw new ApiHandler($e->getMessage());
         }
-
-        $type = IncidentsTypes::where('id', Input::json('typeId', 'Tipo', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
-        if (!$type) {
-            throw new ApiHandler('Tipo inválida!');
-        }
-
-        $status = IncidentsStatus::where('id', Input::json('statusId', 'Status', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
-        if (!$status) {
-            throw new ApiHandler('Status inválida!');
-        }
-
-        $user = new Incidents([
-            'title' => $title,
-            'description' => $description,
-            'critical_id' => $critical->id,
-            'type_id' => $type->id,
-            'status_id' => $status->id,
-        ]);
-        $user->save();
 
         return [];
     }
 
     public function update($id)
     {
-        $incident = Incidents::where('id', $id)->first();
-        if (!$incident) {
-            throw new ApiHandler('Registro não encontrado!');
-        }
-        $title = Input::json('title', 'Título', [FormValidation::REQUIRED]);
-        $description = Input::json('description', 'Descrição', [FormValidation::REQUIRED]);
+        try {
 
-        $critical = IncidentsCritics::where('id', Input::json('criticalId', 'Criticidade', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
-        if (!$critical) {
-            throw new ApiHandler('Criticidade inválida!');
-        }
+            $incident = Incidents::where('id', $id)->first();
+            if (!$incident) {
+                throw new ApiHandler('Registro não encontrado!');
+            }
+            $title = Input::json('title', 'Título', [FormValidation::REQUIRED]);
+            $description = Input::json('description', 'Descrição', [FormValidation::REQUIRED]);
 
-        $type = IncidentsTypes::where('id', Input::json('typeId', 'Tipo', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
-        if (!$type) {
-            throw new ApiHandler('Tipo inválida!');
-        }
+            $critical = IncidentsCritics::where('id', Input::json('criticalId', 'Criticidade', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
+            if (!$critical) {
+                throw new ApiHandler('Criticidade inválida!');
+            }
 
-        $status = IncidentsStatus::where('id', Input::json('statusId', 'Status', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
-        if (!$status) {
-            throw new ApiHandler('Status inválida!');
-        }
+            $type = IncidentsTypes::where('id', Input::json('typeId', 'Tipo', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
+            if (!$type) {
+                throw new ApiHandler('Tipo inválida!');
+            }
 
-        $incident->title = $title;
-        $incident->description = $description;
-        $incident->critical_id = $critical->id;
-        $incident->type_id = $type->id;
-        $incident->status_id = $status->id;
-        $incident->save();
+            $status = IncidentsStatus::where('id', Input::json('statusId', 'Status', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
+            if (!$status) {
+                throw new ApiHandler('Status inválida!');
+            }
+
+            $incident->title = $title;
+            $incident->description = $description;
+            $incident->critical_id = $critical->id;
+            $incident->type_id = $type->id;
+            $incident->status_id = $status->id;
+            $incident->save();
+        } catch (Exception $e) {
+            throw new ApiHandler($e->getMessage());
+        }
 
         return [];
     }
