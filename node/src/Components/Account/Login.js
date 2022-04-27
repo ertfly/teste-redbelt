@@ -1,4 +1,4 @@
-import HeaderOut from '../HeaderOut'
+import HeaderOut from './../HeaderOut'
 import { useState } from 'react';
 import './Login.css'
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,7 +21,7 @@ function Login() {
             let response = request.data.response
             let data = request.data.data
 
-            if (response.action !== 0) {
+            if (response.action != 0) {
                 setError(response.msg)
                 return;
             }
