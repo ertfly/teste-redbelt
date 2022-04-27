@@ -1,6 +1,6 @@
 import HeaderIn from "../HeaderIn"
 import { useDispatch, useSelector } from 'react-redux';
-import { listUser, setListUser } from "../../Redux/Actions/User";
+import { setListUser } from "../../Redux/Actions/User";
 import { useEffect, useState } from "react";
 import Loader from "../Loader";
 import axios from "axios";
@@ -11,12 +11,10 @@ function UserList() {
         document.location.href = '/account/login'
     }
 
+    const [rows, setRows] = useState([])
+
     let [error, setError] = useState('')
     let [loader, setLoader] = useState(false)
-
-    let dispatch = useDispatch()
-    
-    dispatch(setListUser({ rows: [] }))
 
     axios.get(BASE_URL + 'user', { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
         let response = request.data.response
@@ -28,7 +26,7 @@ function UserList() {
             return;
         }
 
-        dispatch(setListUser({ rows: data.rows }))
+        setRows(data.rows)
     })
 
     let breadcrumb = [];
@@ -42,9 +40,6 @@ function UserList() {
         url: null,
         active: true,
     })
-
-    const rows = useSelector((state) => state.rows)
-    console.log(rows)
 
     return (
         <>
@@ -82,7 +77,7 @@ function UserList() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {!rows || rows.length <= 0 ? (
+                                        {rows.length <= 0 ? (
                                             <>
                                                 <tr>
                                                     <td className="text-center" colspan="20">Nenhum registro encontrado!</td>
