@@ -45,5 +45,6 @@ class LoginController extends BaseController
         $sid->user_id = null;
         $sid->updated_at = Carbon::now();
         $sid->save();
+        return [];
     }
 }

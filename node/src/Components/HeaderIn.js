@@ -14,7 +14,8 @@ function HeaderIn(props) {
 
     let logout = () => {
         setLoader(true)
-        axios.delete(BASE_URL + 'token').then((response) => {
+        axios.delete(BASE_URL + 'account/login').then((response) => {
+            console.log(response)
             sessionStorage.setItem('name', '')
             sessionStorage.setItem('logged', 0)
             window.setTimeout(function () { document.location.href = '/account/login' }, 500)
@@ -36,7 +37,7 @@ function HeaderIn(props) {
                             <p className="text-danger">Deseja realmente se desconectar?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">Sim</button>
+                            <button type="submit" class="btn btn-success" onClick={() => { logout() }}>Sim</button>
                             <button type="button" class="btn btn-danger" onClick={() => { setModalClose(false) }}>Não</button>
                         </div>
                     </div>
