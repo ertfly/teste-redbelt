@@ -1,13 +1,13 @@
-import { USER_POST } from "../Types/User";
+import { USER_LIST } from "../Types/User";
 
 const defaultUser = {
-    name: '',
+    rows: [],
 }
 
 const User = (state = defaultUser, action) => {
     const { type, information = defaultUser } = action
     switch (type) {
-        case USER_POST:
+        case USER_LIST:
             return information;
         default:
             return state;

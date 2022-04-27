@@ -1,9 +1,31 @@
 import HeaderIn from "../HeaderIn"
+import { useDispatch, useSelector } from 'redux'
+import { listUser } from "../../Redux/Actions/User";
+import { useState } from "react";
+import Loader from "../Loader";
 
 function UserList() {
     if (sessionStorage.getItem('logged') != 1) {
         document.location.href = '/account/login'
     }
+
+    let [error, setError] = useState('')
+    let [loader, setLoader] = useState(false)
+
+    dispatch = useDispatch()
+
+    axios.get(BASE_URL + 'user', { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+        let response = request.data.response
+        let data = request.data.data
+
+        if (response.action !== 0) {
+            setLoader(false)
+            setError(response.msg)
+            return;
+        }
+
+        listUser({ rows: data.rows })
+    })
 
     let breadcrumb = [];
     breadcrumb.push({
@@ -19,7 +41,9 @@ function UserList() {
 
     return (
         <>
+            <Loader show={loader} />
             <HeaderIn breadcrumb={breadcrumb} />
+            <div class={'alert alert-danger mt-3' + (error ? ' d-block' : ' d-none')}>{error}</div>
             <div className="container">
                 <div className="card">
                     <div className="card-body">

@@ -1,6 +1,6 @@
-import { USER_POST } from "../Types/User"
+import { USER_LIST } from "../Types/User"
 
-export const createUser = (information) => ({
-    type: USER_POST,
+export const listUser = (information) => ({
+    type: USER_LIST,
     information
 })
