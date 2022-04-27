@@ -8,7 +8,6 @@ use App\Libraries\Input;
 use App\Libraries\Strings;
 use App\Models\User;
 use Exception;
-use Illuminate\Support\Facades\Log;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
 class UserController extends BaseController
