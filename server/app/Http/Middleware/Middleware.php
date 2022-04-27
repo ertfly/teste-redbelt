@@ -23,6 +23,7 @@ class Middleware
 
     protected $forceLogin = [
         'user',
+        'incident'
     ];
 
     /**
