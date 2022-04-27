@@ -37,7 +37,7 @@ class UserController extends BaseController
         $passConfirm = Input::json('passConfirm', 'Confirmação de senha', [FormValidation::REQUIRED]);
 
         if (Strings::password($pass) != Strings::password($passConfirm)) {
-            throw new Exception('Confirmação de senha inválida!');
+            throw new ApiHandler('Confirmação de senha inválida!');
         }
 
         $check = User::where('username', $username)->first();
@@ -59,7 +59,7 @@ class UserController extends BaseController
     {
         $user = User::where('id', $id)->first();
         if (!$user) {
-            throw new Exception('Registro não encontrado!');
+            throw new ApiHandler('Registro não encontrado!');
         }
 
         $name = Input::json('name', 'Nome', [FormValidation::REQUIRED]);
@@ -69,7 +69,7 @@ class UserController extends BaseController
 
         if ($pass && $passConfirm) {
             if (Strings::password($pass) != Strings::password($passConfirm)) {
-                throw new Exception('Confirmação de senha inválida!');
+                throw new ApiHandler('Confirmação de senha inválida!');
             }
             $user->pass = Strings::password($pass);
         }
@@ -89,9 +89,9 @@ class UserController extends BaseController
     public function delete($id){
         $user = User::where('id', $id)->first();
         if (!$user) {
-            throw new Exception('Registro não encontrado!');
+            throw new ApiHandler('Registro não encontrado!');
         }
 
-        
+
     }
 }
