@@ -16,10 +16,17 @@ class IncidentController
     {
         $rows = [];
         foreach (Incidents::all() as $r) {
+            $critical = IncidentsCritics::where('id', $r->critical_id);
+            $type = IncidentsTypes::where('id', $r->type_id);
+            $status = IncidentsStatus::with('id', $r->status_id);
+
             $rows[] = [
                 'id' => $r->id,
                 'title' => $r->title,
                 'description' => $r->description,
+                'critical' => !$critical ? '' : $critical->description,
+                'type' => !$type ? '' : $type->description,
+                'statys' => !$status ? '' : $status->description,
             ];
         }
 
