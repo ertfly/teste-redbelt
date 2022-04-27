@@ -97,4 +97,18 @@ class UserController extends BaseController
 
         return [];
     }
+
+    public function detail($id)
+    {
+        $user = User::where('id', $id)->first();
+        if (!$user) {
+            throw new ApiHandler('Registro não encontrado!');
+        }
+
+        return [
+            'id' => $user->id,
+            'name' => $user->name,
+            'username' => $user->username,
+        ];
+    }
 }

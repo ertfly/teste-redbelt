@@ -21,6 +21,7 @@ $router->post('/account/login', 'LoginController@submit');
 $router->delete('/account/login', 'LoginController@delete');
 
 $router->get('/user', 'UserController@list');
+$router->get('/user/{id}', 'UserController@detail');
 $router->post('/user', 'UserController@create');
 $router->put('/user/{id}', 'UserController@update');
 $router->delete('/user/{id}', 'UserController@delete');

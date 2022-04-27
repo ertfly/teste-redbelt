@@ -163,4 +163,41 @@ class UserTest extends TestCase
             'action' => 0,
         ]);
     }
+
+    public function testShouldBeNotShowDataUserWhyNotLogin()
+    {
+        $this->json('POST', '/token', [], [
+            'Content-Type' => 'application/json'
+        ]);
+        $responseToken = json_decode($this->response->getContent(), true);
+
+        $this->json('GET', '/user/1', [], [
+            'Content-Type' => 'application/json',
+            'token' => $responseToken['data']['token'],
+        ])->seeJson([
+            'action' => 0,
+        ]);
+    }
+
+    public function testShouldBeShowDataUser()
+    {
+        $this->json('POST', '/token', [], [
+            'Content-Type' => 'application/json'
+        ]);
+        $responseToken = json_decode($this->response->getContent(), true);
+        $this->json('POST', '/account/login', [
+            'username' => 'admin',
+            'pass' => 'admin'
+        ], [
+            'Content-Type' => 'application/json',
+            'token' => $responseToken['data']['token'],
+        ]);
+
+        $this->json('GET', '/user/1', [], [
+            'Content-Type' => 'application/json',
+            'token' => $responseToken['data']['token'],
+        ])->seeJson([
+            'action' => 0,
+        ]);
+    }
 }

@@ -185,6 +185,7 @@ function UserAdd() {
             let data = request.data.data
 
             if (response.action !== 0) {
+                setLoader(false)
                 setError(response.msg)
                 return;
             }
@@ -247,11 +248,102 @@ function UserAdd() {
 }
 
 function UserEdit(props) {
+    if (sessionStorage.getItem('logged') != 1) {
+        document.location.href = '/account/login'
+    }
+
     if (typeof (props.id) || !props.id) {
         document.location.href = '/register/user'
     }
 
-    
+    let [user, setUser] = useState({})
+    let [loader, setLoader] = useState(false)
+    let [error, setError] = useState('')
+
+    let breadcrumb = [];
+    breadcrumb.push({
+        text: 'Dashboard',
+        url: '/',
+        active: false,
+    })
+    breadcrumb.push({
+        text: 'Cadastro - Usuários',
+        url: '/register/user',
+        active: false,
+    })
+    breadcrumb.push({
+        text: 'Editar',
+        url: null,
+        active: true,
+    })
+
+    let save = () => {
+        setLoader(true)
+        axios.put(BASE_URL + 'user/' + props.id, user, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+            let response = request.data.response
+            let data = request.data.data
+
+            if (response.action !== 0) {
+                setLoader(false)
+                setError(response.msg)
+                return;
+            }
+
+            window.setTimeout(function () { document.location.href = '/register/user' }, 400)
+        })
+    }
+
+    return (
+        <>
+            <Loader show={loader} />
+            <HeaderIn breadcrumb={breadcrumb} />
+            <div class={'alert alert-danger' + (error ? ' d-block' : ' d-none')}>{error}</div>
+            <div className="container">
+                <div className="card">
+                    <div className="card-body">
+
+                        <div className="d-flex justify-content-between">
+                            <div>
+                                <h2 className="card-title">Usuário - Editar</h2>
+                                <p className="card-text">Preencha os campos para inserir as informações</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <ul className="nav nav-tabs mt-4">
+                            <li className="nav-item">
+                                <a className="nav-link active" href="/register/user/add">Informações</a>
+                            </li>
+                        </ul>
+                        <div className="tabcontent-border">
+                            <form method="post" onSubmit={(e) => { e.preventDefault(); save() }}>
+                                <div className="form-row">
+                                    <div className="col-md-4 form-group">
+                                        <label className="required">Nome</label>
+                                        <input type="text" className="form-control" onChange={e => setUser({ ...user, name: e.target.value })} />
+                                    </div>
+                                    <div className="col-md-4 form-group">
+                                        <label className="required">Usuário</label>
+                                        <input type="text" className="form-control" onChange={e => setUser({ ...user, username: e.target.value })} />
+                                    </div>
+                                    <div className="col-md-4 form-group">
+                                        <label className="required">Senha</label>
+                                        <input type="password" className="form-control" onChange={e => setUser({ ...user, pass: e.target.value })} />
+                                    </div>
+                                    <div className="col-md-4 form-group">
+                                        <label className="required">Confirmar senha</label>
+                                        <input type="password" className="form-control" onChange={e => setUser({ ...user, passConfirm: e.target.value })} />
+                                    </div>
+                                </div>
+                                <div className="clearfix text-left">
+                                    <button className="btn btn-primary" type="submit"><i className="mr-1 fas fa-plus fa-white"></i> Adicionar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
 }
 
 export { UserList, UserAdd }
