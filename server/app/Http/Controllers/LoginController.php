@@ -38,4 +38,12 @@ class LoginController extends BaseController
             'logged' => intval($sid->isLogged()),
         ];
     }
+
+    public function delete()
+    {
+        $sid = Session::where('token', request()->header('token'))->first();
+        $sid->user_id = null;
+        $sid->updated_at = Carbon::now();
+        $sid->save();
+    }
 }

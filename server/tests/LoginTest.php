@@ -37,4 +37,26 @@ class LoginTest extends TestCase
             'action' => 1,
         ]);
     }
+
+    public function testShouldBeLoginDelete()
+    {
+        $this->json('POST', '/token', [], [
+            'Content-Type' => 'application/json'
+        ]);
+        $responseToken = json_decode($this->response->getContent(), true);
+        $this->json('POST', '/account/login', [
+            'username' => 'admin',
+            'pass' => 'admin'
+        ], [
+            'Content-Type' => 'application/json',
+            'token' => $responseToken['data']['token'],
+        ]);
+
+        $this->json('DELETE', '/account/login', [], [
+            'Content-Type' => 'application/json',
+            'token' => $responseToken['data']['token'],
+        ])->seeJson([
+            'action' => 0,
+        ]);
+    }
 }
