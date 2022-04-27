@@ -1,4 +1,7 @@
 import { useState } from "react";
+import Loader from './Loader'
+import axios from 'axios'
+import { BASE_URL } from './../Config';
 
 function HeaderIn(props) {
 
@@ -7,9 +10,20 @@ function HeaderIn(props) {
     }
 
     const [modalClose, setModalClose] = useState(false)
+    const [loader, setLoader] = useState(false)
+
+    let logout = () => {
+        setLoader(true)
+        axios.delete(BASE_URL + 'token').then((response) => {
+            sessionStorage.setItem('name', '')
+            sessionStorage.setItem('logged', 0)
+            window.setTimeout(function () { document.location.href = '/account/login' }, 500)
+        })
+    }
 
     return (
         <>
+            <Loader show={loader} />
             <link href="/assets/css/base.in.css" rel="stylesheet" nonce="rAnd0m" />
             <div className={'modal fade' + (modalClose ? ' show' : '') + (modalClose ? ' d-block' : '')} tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
                 <div className="modal-dialog" role="document">
