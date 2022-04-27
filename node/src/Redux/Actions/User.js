@@ -1,6 +1,5 @@
-import { USER_LIST } from "../Types/User"
+import { USER_LIST } from '../Types/Index'
 
-export const listUser = (information) => ({
-    type: USER_LIST,
-    information
+export const listUser = () => ({
+    type: USER_LIST
 })

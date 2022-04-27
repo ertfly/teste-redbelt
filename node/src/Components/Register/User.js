@@ -1,8 +1,10 @@
 import HeaderIn from "../HeaderIn"
-import { useDispatch, useSelector } from 'redux'
+import { useDispatch, useSelector } from 'react-redux';
 import { listUser } from "../../Redux/Actions/User";
 import { useState } from "react";
 import Loader from "../Loader";
+import axios from "axios";
+import { BASE_URL } from './../../Config'
 
 function UserList() {
     if (sessionStorage.getItem('logged') != 1) {
@@ -12,7 +14,13 @@ function UserList() {
     let [error, setError] = useState('')
     let [loader, setLoader] = useState(false)
 
-    dispatch = useDispatch()
+    let dispatch = useDispatch()
+
+    
+
+    const rows = useSelector(state => state.rows)
+
+    console.log(rows)
 
     axios.get(BASE_URL + 'user', { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
         let response = request.data.response
@@ -24,7 +32,7 @@ function UserList() {
             return;
         }
 
-        listUser({ rows: data.rows })
+        dispatch(listUser({ rows: data.rows }))
     })
 
     let breadcrumb = [];
@@ -68,27 +76,37 @@ function UserList() {
                                 <table className="table table-hover table-striped">
                                     <thead>
                                         <tr>
+                                            <th className="text-left">ID</th>
                                             <th className="text-left">Nome</th>
                                             <th className="text-left">Usuário</th>
-                                            <th className="text-center">Perfis</th>
                                             <th className="text-right">Opções</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>asdasd</td>
-                                            <td>asdasd</td>
-                                            <td className="text-center">
-                                                asdasd
-                                            </td>
-                                            <td className="text-right">
-                                                <a href="/" className="btn btn-primary btn-sm" title="Editar registro"><i className="fa fa-pencil fa-white"></i></a>
-                                                <button type="button" className="btn btn-danger btn-sm" title="Excluir registro"><i className="fa fa-trash fa-white"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className="text-center" colspan="20">Nenhum registro encontrado!</td>
-                                        </tr>
+                                        {dispatch(listUser()).rows.length <= 0 ? (
+                                            <>
+                                                <tr>
+                                                    <td className="text-center" colspan="20">Nenhum registro encontrado!</td>
+                                                </tr>
+                                            </>
+                                        ) : (
+                                            <>
+                                                {dispatch(listUser()).rows.map((a) => (
+                                                    <>
+                                                        <tr>
+                                                            <td>{a.id}</td>
+                                                            <td>{a.name}</td>
+                                                            <td>{a.username}</td>
+                                                            <td className="text-right">
+                                                                <a href="/" className="btn btn-primary btn-sm" title="Editar registro"><i className="fa fa-pencil fa-white"></i></a>
+                                                                <button type="button" className="btn btn-danger btn-sm" title="Excluir registro"><i className="fa fa-trash fa-white"></i></button>
+                                                            </td>
+                                                        </tr>
+                                                    </>
+                                                ))}
+                                            </>
+                                        )}
+
                                     </tbody>
                                 </table>
                             </div>

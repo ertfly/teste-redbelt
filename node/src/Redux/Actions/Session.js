@@ -1,4 +1,4 @@
-import { SESSION_CREATE, SESSION_DATA } from './../Types/Session'
+import { SESSION_CREATE, SESSION_DATA } from '../Types/Index'
 
 export const createToken = (information) => ({
     type: SESSION_CREATE,
