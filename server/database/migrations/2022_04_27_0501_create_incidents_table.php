@@ -40,6 +40,8 @@ class CreateIncidentsTable extends Migration
             $table->string('description', 100)->index();
             $table->timestamps();
         });
+
+        
     }
 
     /**
