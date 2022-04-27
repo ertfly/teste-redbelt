@@ -72,9 +72,9 @@ $app->configure('app');
 |
 */
 
-/* $app->middleware([
-    
-]); */
+$app->middleware([
+    App\Http\Middleware\MiddlewareCors::class
+]);
 
 $app->routeMiddleware([
     'in' => App\Http\Middleware\MiddlewareIn::class,

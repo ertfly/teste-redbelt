@@ -1,17 +1,21 @@
 function Loader(props) {
-    
+    let show, image
     if (typeof (props.image) == 'undefined' || !props.image) {
-        props.image = '/assets/img/loader.gif'
+        image = '/assets/img/loader.gif'
+    } else {
+        image = props.image
     }
     if (typeof (props.show) == 'undefined' || !props.show) {
-        props.show = false
+        show = false
+    } else {
+        show = props.show
     }
 
     return (
-        <div className={'clearfix' + (props.show ? ' d-block' : ' d-none')}>
+        <div className={'clearfix' + (show ? ' d-block' : ' d-none')}>
             <div className="custom-loader-bg"></div>
             <div className="custom-loader" >
-                <img src={props.image} alt="Processando..." />
+                <img src={image} alt="Processando..." />
             </div >
         </div >
     )

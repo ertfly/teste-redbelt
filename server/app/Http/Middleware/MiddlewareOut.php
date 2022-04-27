@@ -23,8 +23,6 @@ class MiddlewareOut
      */
     public function handle($request, Closure $next)
     {
-        header('Access-Control-Allow-Origin: *');
-        
         try {
             $token = $request->header('token');
             if (trim($token) == '') {

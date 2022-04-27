@@ -13,13 +13,13 @@ function App() {
 
   if (!first) {
     if (!sessionStorage.getItem('token')) {
-      axios.post(BASE_URL + 'token').then((response) => {
+      axios.post(BASE_URL + 'token', {}, { headers: { 'Content-Type': 'application/json' } }).then((response) => {
         sessionStorage.setItem('name', response.data.data.name)
         sessionStorage.setItem('token', response.data.data.token)
         sessionStorage.setItem('logged', response.data.data.logged)
       })
     } else {
-      axios.get(BASE_URL + 'token', { headers: { 'token': sessionStorage.getItem('token') } }).then((response) => {
+      axios.get(BASE_URL + 'token', { headers: { 'token': sessionStorage.getItem('token') , 'Content-Type': 'application/json'} }).then((response) => {
         sessionStorage.setItem('name', response.data.data.name)
         sessionStorage.setItem('logged', response.data.data.logged)
       })
