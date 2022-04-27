@@ -40,7 +40,7 @@ function HeaderIn(props) {
                         <li className="sub">
                             <a href="/" target="_self">Cadastros</a>
                             <ul>
-                                <li><a href="/user" target="_self"><i className="fa fa-cog"></i>Usuários</a></li>
+                                <li><a href="/register/user" target="_self"><i className="fa fa-cog"></i>Usuários</a></li>
                             </ul>
                         </li>
                         <li className="sub">
@@ -58,7 +58,16 @@ function HeaderIn(props) {
                     <ol className="breadcrumb breadcrumb-bg">
                         {props.breadcrumb.map((item) => (
                             <>
-                                <li className={'breadcrumb-item' + (item.active ? ' active' : '')}><a href={item.url}>{item.text}</a></li>
+                                {item.active ? (
+                                    <>
+                                        <li className="breadcrumb-item active">{item.text}</li>
+                                    </>
+                                ) : (
+                                    <>
+                                        <li className="breadcrumb-item"><a href={item.url}>{item.text}</a></li>
+                                    </>
+                                )}
+                                
                             </>
                         ))}
                     </ol>

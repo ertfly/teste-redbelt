@@ -1,4 +1,4 @@
-import HeaderOut from './../HeaderOut'
+import HeaderOut from '../HeaderOut'
 import { useState } from 'react';
 import './Login.css'
 import { useDispatch, useSelector } from 'react-redux';
