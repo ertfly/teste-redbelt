@@ -11,11 +11,19 @@ function HeaderIn(props) {
 
     const [modalClose, setModalClose] = useState(false)
     const [loader, setLoader] = useState(false)
+    const [error, setError] = useState('')
 
     let logout = () => {
         setLoader(true)
-        axios.delete(BASE_URL + 'account/login').then((response) => {
-            console.log(response)
+        axios.delete(BASE_URL + 'account/login', { headers: { token: sessionStorage.getItem('token') } }).then((request) => {
+            let response = request.data.response
+
+            if (response.action !== 0) {
+                setLoader(false)
+                setError(response.msg)
+                return;
+            }
+
             sessionStorage.setItem('name', '')
             sessionStorage.setItem('logged', 0)
             window.setTimeout(function () { document.location.href = '/account/login' }, 500)
@@ -112,6 +120,7 @@ function HeaderIn(props) {
             </div>
 
             <div className="pt-3 d-block d-sm-none"></div>
+            <div class={'alert alert-danger' + (error ? ' d-block' : ' d-none')}>{error}</div>
         </>
     )
 }
