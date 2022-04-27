@@ -72,15 +72,15 @@ $app->configure('app');
 |
 */
 
-$app->middleware([
+/* $app->middleware([
+    
+]); */
+
+$app->routeMiddleware([
     'in' => App\Http\Middleware\MiddlewareIn::class,
     'out' => App\Http\Middleware\MiddlewareOut::class,
     'noToken' => App\Http\Middleware\MiddlewareNotToken::class
 ]);
-
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
 
 /*
 |--------------------------------------------------------------------------

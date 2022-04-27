@@ -4,6 +4,8 @@ namespace Tests;
 
 use App\Libraries\Number;
 use App\Libraries\Strings;
+use Illuminate\Support\Facades\Log;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 
 class UserTest extends TestCase
 {
@@ -106,7 +108,7 @@ class UserTest extends TestCase
             'Content-Type' => 'application/json',
             'token' => $responseToken['data']['token'],
         ])->seeJson([
-            'action' => 0,
+            'action' => 3,
         ]);
     }
 
@@ -175,7 +177,7 @@ class UserTest extends TestCase
             'Content-Type' => 'application/json',
             'token' => $responseToken['data']['token'],
         ])->seeJson([
-            'action' => 0,
+            'action' => 3,
         ]);
     }
 

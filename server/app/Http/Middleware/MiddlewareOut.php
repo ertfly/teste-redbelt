@@ -25,7 +25,6 @@ class MiddlewareOut
     public function handle($request, Closure $next)
     {
         try {
-            Log::info('entro Out');
             $token = $request->header('token');
             if (trim($token) == '') {
                 throw new Exception('Informar o "token" no header');

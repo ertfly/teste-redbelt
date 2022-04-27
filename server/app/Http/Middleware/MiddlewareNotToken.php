@@ -23,7 +23,6 @@ class MiddlewareNotToken
     public function handle($request, Closure $next)
     {
         try {
-            Log::info('entro NotToken');
             $headers = [
                 'Access-Control-Allow-Origin'      => '*',
                 'Access-Control-Allow-Methods'     => 'POST, GET, OPTIONS, PUT, DELETE',

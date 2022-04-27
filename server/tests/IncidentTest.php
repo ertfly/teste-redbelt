@@ -52,7 +52,7 @@ class IncidentTest extends TestCase
             'Content-Type' => 'application/json',
             'token' => $responseToken['data']['token'],
         ])->seeJson([
-            'action' => 0,
+            'action' => 3,
         ]);
     }
 
