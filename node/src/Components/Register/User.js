@@ -10,7 +10,7 @@ function User() {
     breadcrumb.push({
         text: 'Cadastro - Usuários',
         url: null,
-        active: false,
+        active: true,
     })
 
     return (
