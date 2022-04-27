@@ -15,12 +15,10 @@ function UserList() {
     let [loader, setLoader] = useState(false)
 
     let dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(setListUser({ rows: [] }))
-    }, [])
+    
+    dispatch(setListUser({ rows: [] }))
 
     axios.get(BASE_URL + 'user', { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
-        console.log(request)
         let response = request.data.response
         let data = request.data.data
 
@@ -45,7 +43,8 @@ function UserList() {
         active: true,
     })
 
-    const rows = useSelector(state => state.rows)
+    const rows = useSelector((state) => state.rows)
+    console.log(rows)
 
     return (
         <>

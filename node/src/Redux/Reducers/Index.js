@@ -33,5 +33,5 @@ const User = (state = defaultUser, action) => {
     }
 }
 
-const Reducers = combineReducers({Session, User})
+const Reducers = combineReducers([Session, User])
 export default Reducers
