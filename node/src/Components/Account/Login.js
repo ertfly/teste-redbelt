@@ -26,8 +26,9 @@ function Login() {
             }
 
             sessionStorage.setItem('logged', data.logged)
+            sessionStorage.setItem('name', data.name)
             dispatch(createToken({ name: data.name, isLogged: data.logged, token: data.token }))
-            window.setTimeout(function () { document.location.href = '/' })
+            window.setTimeout(function () { document.location.href = '/' }, 400)
         })
     }
 

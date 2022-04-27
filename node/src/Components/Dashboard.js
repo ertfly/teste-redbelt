@@ -1,11 +1,9 @@
 import HeaderIn from "./HeaderIn";
 
 export default function Dashboard() {
-    console.log(sessionStorage.getItem('logged'))
-
-    /* if (sessionStorage.getItem('logged')!==1) {
+    if (sessionStorage.getItem('logged') != 1) {
         document.location.href = '/account/login'
-    } */
+    }
     let breadcrumb = [];
     breadcrumb.push({
         text: 'Dashboard',
