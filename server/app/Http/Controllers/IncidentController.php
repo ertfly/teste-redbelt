@@ -17,9 +17,9 @@ class IncidentController
     {
         $rows = [];
         foreach (Incidents::all() as $r) {
-            $critical = IncidentsCritics::where('id', $r->critical_id);
-            $type = IncidentsTypes::where('id', $r->type_id);
-            $status = IncidentsStatus::with('id', $r->status_id);
+            $critical = IncidentsCritics::where('id', $r->critical_id)->first();
+            $type = IncidentsTypes::where('id', $r->type_id)->first();
+            $status = IncidentsStatus::where('id', $r->status_id)->first();
 
             $rows[] = [
                 'id' => $r->id,
@@ -78,17 +78,17 @@ class IncidentController
             $title = Input::json('title', 'Título', [FormValidation::REQUIRED]);
             $description = Input::json('description', 'Descrição', [FormValidation::REQUIRED]);
 
-            $critical = IncidentsCritics::where('id', Input::json('criticalId', 'Criticidade', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
+            $critical = IncidentsCritics::where('id', Input::json('criticalId', 'Criticidade', [FormValidation::REQUIRED, FormValidation::NUMERIC]))->first();
             if (!$critical) {
                 throw new ApiHandler('Criticidade inválida!');
             }
 
-            $type = IncidentsTypes::where('id', Input::json('typeId', 'Tipo', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
+            $type = IncidentsTypes::where('id', Input::json('typeId', 'Tipo', [FormValidation::REQUIRED, FormValidation::NUMERIC]))->first();
             if (!$type) {
                 throw new ApiHandler('Tipo inválida!');
             }
 
-            $status = IncidentsStatus::where('id', Input::json('statusId', 'Status', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
+            $status = IncidentsStatus::where('id', Input::json('statusId', 'Status', [FormValidation::REQUIRED, FormValidation::NUMERIC]))->first();
             if (!$status) {
                 throw new ApiHandler('Status inválida!');
             }
@@ -119,17 +119,17 @@ class IncidentController
             $title = Input::json('title', 'Título', [FormValidation::REQUIRED]);
             $description = Input::json('description', 'Descrição', [FormValidation::REQUIRED]);
 
-            $critical = IncidentsCritics::where('id', Input::json('criticalId', 'Criticidade', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
+            $critical = IncidentsCritics::where('id', Input::json('criticalId', 'Criticidade', [FormValidation::REQUIRED, FormValidation::NUMERIC]))->first();
             if (!$critical) {
                 throw new ApiHandler('Criticidade inválida!');
             }
 
-            $type = IncidentsTypes::where('id', Input::json('typeId', 'Tipo', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
+            $type = IncidentsTypes::where('id', Input::json('typeId', 'Tipo', [FormValidation::REQUIRED, FormValidation::NUMERIC]))->first();
             if (!$type) {
                 throw new ApiHandler('Tipo inválida!');
             }
 
-            $status = IncidentsStatus::where('id', Input::json('statusId', 'Status', [FormValidation::REQUIRED, FormValidation::NUMERIC]));
+            $status = IncidentsStatus::where('id', Input::json('statusId', 'Status', [FormValidation::REQUIRED, FormValidation::NUMERIC]))->first();
             if (!$status) {
                 throw new ApiHandler('Status inválida!');
             }

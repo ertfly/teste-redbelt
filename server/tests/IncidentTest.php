@@ -65,9 +65,9 @@ class IncidentTest extends TestCase
         $this->json('POST', '/incident', [
             'title' => 'TestCase',
             'description' => 'Descrição TestCase',
-            'critical_id' => 1,
-            'type_id' => 1,
-            'status_id' => 1,
+            'criticalId' => 1,
+            'typeId' => 1,
+            'statusId' => 1,
         ], [
             'Content-Type' => 'application/json',
             'token' => $responseToken['data']['token'],
