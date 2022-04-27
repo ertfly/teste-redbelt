@@ -350,7 +350,7 @@ function UserEdit() {
                                     </div>
                                     <div className="col-md-4 form-group">
                                         <label className="required">Usuário</label>
-                                        <input type="text" className="form-control" onChange={e => setUser({ ...user, username: e.target.value })} defaultChecked={user.username} />
+                                        <input type="text" className="form-control" onChange={e => setUser({ ...user, username: e.target.value })} defaultValue={user.username} />
                                     </div>
                                     <div className="col-md-4 form-group">
                                         <label className="required">Senha</label>
@@ -362,7 +362,7 @@ function UserEdit() {
                                     </div>
                                 </div>
                                 <div className="clearfix text-left">
-                                    <button className="btn btn-primary" type="submit"><i className="mr-1 fas fa-plus fa-white"></i> Adicionar</button>
+                                    <button className="btn btn-primary" type="submit"><i className="mr-1 fas fa-save fa-white"></i> Alterar</button>
                                 </div>
                             </form>
                         </div>
