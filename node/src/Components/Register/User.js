@@ -1,7 +1,7 @@
 import HeaderIn from "../HeaderIn"
 import { useDispatch, useSelector } from 'react-redux';
-import { listUser } from "../../Redux/Actions/User";
-import { useState } from "react";
+import { listUser, setListUser } from "../../Redux/Actions/User";
+import { useEffect, useState } from "react";
 import Loader from "../Loader";
 import axios from "axios";
 import { BASE_URL } from './../../Config'
@@ -15,14 +15,12 @@ function UserList() {
     let [loader, setLoader] = useState(false)
 
     let dispatch = useDispatch()
-
-    
-
-    const rows = useSelector(state => state.rows)
-
-    console.log(rows)
+    useEffect(() => {
+        dispatch(setListUser({ rows: [] }))
+    }, [])
 
     axios.get(BASE_URL + 'user', { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+        console.log(request)
         let response = request.data.response
         let data = request.data.data
 
@@ -32,7 +30,7 @@ function UserList() {
             return;
         }
 
-        dispatch(listUser({ rows: data.rows }))
+        dispatch(setListUser({ rows: data.rows }))
     })
 
     let breadcrumb = [];
@@ -46,6 +44,8 @@ function UserList() {
         url: null,
         active: true,
     })
+
+    const rows = useSelector(state => state.rows)
 
     return (
         <>
@@ -83,7 +83,7 @@ function UserList() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {dispatch(listUser()).rows.length <= 0 ? (
+                                        {!rows || rows.length <= 0 ? (
                                             <>
                                                 <tr>
                                                     <td className="text-center" colspan="20">Nenhum registro encontrado!</td>
@@ -91,7 +91,7 @@ function UserList() {
                                             </>
                                         ) : (
                                             <>
-                                                {dispatch(listUser()).rows.map((a) => (
+                                                {rows.map((a) => (
                                                     <>
                                                         <tr>
                                                             <td>{a.id}</td>
