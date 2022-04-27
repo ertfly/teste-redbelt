@@ -83,16 +83,13 @@ function HeaderIn(props) {
                 <div className="container">
                     <ul>
                         <li className="sub">
-                            <a href="/" target="_self">Cadastros</a>
+                            <a href="#" target="_self">Cadastros</a>
                             <ul>
                                 <li><a href="/register/user" target="_self"><i className="fa fa-cog"></i>Usuários</a></li>
                             </ul>
                         </li>
                         <li className="sub">
-                            <a href="/" target="_self">Lançamento</a>
-                            <ul>
-                                <li><a href="/" target="_self"><i className="fa fa-cog"></i>Incidente</a></li>
-                            </ul>
+                            <a href="#" target="_self">Incidentes</a>
                         </li>
                     </ul>
                 </div>
