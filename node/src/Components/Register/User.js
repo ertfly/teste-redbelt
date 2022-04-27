@@ -246,4 +246,12 @@ function UserAdd() {
     )
 }
 
+function UserEdit(props) {
+    if (typeof (props.id) || !props.id) {
+        document.location.href = '/register/user'
+    }
+
+    
+}
+
 export { UserList, UserAdd }
