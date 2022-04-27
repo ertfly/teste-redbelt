@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from './Components/Account/Login'
 import Dashboard from './Components/Dashboard'
-import { UserList, UserAdd } from './Components/Register/User'
+import { UserList, UserAdd, UserEdit } from './Components/Register/User'
 import axios from 'axios'
 import { BASE_URL } from './Config';
 
@@ -31,6 +31,9 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
+          <Route path="/register/user/edit/:id">
+            <UserEdit key="UserEdit" />
+          </Route>
           <Route path="/register/user/add">
             <UserAdd key="UserAdd" />
           </Route>

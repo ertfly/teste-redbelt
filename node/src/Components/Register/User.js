@@ -1,8 +1,9 @@
 import HeaderIn from "../HeaderIn"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "../Loader";
 import axios from "axios";
 import { BASE_URL } from './../../Config'
+import { useParams } from 'react-router-dom'
 
 function UserList() {
     if (sessionStorage.getItem('logged') != 1) {
@@ -31,7 +32,9 @@ function UserList() {
         })
     }
 
-    list()
+    useEffect(() => {
+        list()
+    }, [])
 
 
     let breadcrumb = [];
@@ -132,7 +135,7 @@ function UserList() {
                                                             <td>{a.name}</td>
                                                             <td>{a.username}</td>
                                                             <td className="text-right">
-                                                                <a href="/" className="btn btn-primary btn-sm mr-1" title="Editar registro"><i className="fa fa-pencil fa-white"></i></a>
+                                                                <a href={'/register/user/edit/' + a.id} className="btn btn-primary btn-sm mr-1" title="Editar registro"><i className="fa fa-pencil fa-white"></i></a>
                                                                 <button type="button" className="btn btn-danger btn-sm" title="Excluir registro" onClick={(e) => { setId(a.id); setModalDelete(true) }}><i className="fa fa-trash fa-white"></i></button>
                                                             </td>
                                                         </tr>
@@ -247,17 +250,22 @@ function UserAdd() {
     )
 }
 
-function UserEdit(props) {
+function UserEdit() {
     if (sessionStorage.getItem('logged') != 1) {
         document.location.href = '/account/login'
     }
 
-    if (typeof (props.id) || !props.id) {
+    let { id } = useParams();
+
+    if (!id) {
         document.location.href = '/register/user'
     }
 
-    let [user, setUser] = useState({})
-    let [loader, setLoader] = useState(false)
+    let [user, setUser] = useState({
+        name: '',
+        username: '',
+    })
+    let [loader, setLoader] = useState(true)
     let [error, setError] = useState('')
 
     let breadcrumb = [];
@@ -277,9 +285,28 @@ function UserEdit(props) {
         active: true,
     })
 
+    useEffect(() => {
+        axios.get(BASE_URL + 'user/' + id, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+            let response = request.data.response
+            let data = request.data.data
+
+            if (response.action !== 0) {
+                setLoader(false)
+                setError(response.msg)
+                return;
+            }
+
+            setLoader(false)
+            setUser({
+                name: data.name,
+                username: data.username,
+            })
+        })
+    }, []);
+
     let save = () => {
         setLoader(true)
-        axios.put(BASE_URL + 'user/' + props.id, user, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+        axios.put(BASE_URL + 'user/' + id, user, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
             let response = request.data.response
             let data = request.data.data
 
@@ -304,7 +331,7 @@ function UserEdit(props) {
 
                         <div className="d-flex justify-content-between">
                             <div>
-                                <h2 className="card-title">Usuário - Editar</h2>
+                                <h2 className="card-title">Usuário - #{id} - Editar</h2>
                                 <p className="card-text">Preencha os campos para inserir as informações</p>
                             </div>
                         </div>
@@ -319,11 +346,11 @@ function UserEdit(props) {
                                 <div className="form-row">
                                     <div className="col-md-4 form-group">
                                         <label className="required">Nome</label>
-                                        <input type="text" className="form-control" onChange={e => setUser({ ...user, name: e.target.value })} />
+                                        <input type="text" className="form-control" onChange={e => setUser({ ...user, name: e.target.value })} defaultValue={user.name} />
                                     </div>
                                     <div className="col-md-4 form-group">
                                         <label className="required">Usuário</label>
-                                        <input type="text" className="form-control" onChange={e => setUser({ ...user, username: e.target.value })} />
+                                        <input type="text" className="form-control" onChange={e => setUser({ ...user, username: e.target.value })} defaultChecked={user.username} />
                                     </div>
                                     <div className="col-md-4 form-group">
                                         <label className="required">Senha</label>
@@ -346,4 +373,4 @@ function UserEdit(props) {
     )
 }
 
-export { UserList, UserAdd }
+export { UserList, UserAdd, UserEdit }
