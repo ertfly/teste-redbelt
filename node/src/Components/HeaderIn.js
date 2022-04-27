@@ -1,6 +1,6 @@
 function HeaderIn(props) {
 
-    if (typeof (props.breadcrumb) != 'undefined' || !props.breadcrumb) {
+    if (typeof (props.breadcrumb) == 'undefined' || !props.breadcrumb) {
         props.breadcrumb = [];
     }
 
@@ -58,8 +58,11 @@ function HeaderIn(props) {
             <div className="container d-none d-sm-block mt-3">
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb breadcrumb-bg">
-                        <li className="breadcrumb-item"><a href="/">Dashboard</a></li>
-                        <li className="breadcrumb-item active" aria-current="page">Página</li>
+                        {props.breadcrumb.map((item) => (
+                            <>
+                                <li className={'breadcrumb-item' + (item.active ? ' active' : '')}><a href={item.url}>{item.text}</a></li>
+                            </>
+                        ))}
                     </ol>
                 </nav>
             </div>
