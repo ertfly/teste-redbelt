@@ -115,6 +115,8 @@ function UserAdd() {
         document.location.href = '/account/login'
     }
 
+    let [user, setUser] = useState({})
+
     let breadcrumb = [];
     breadcrumb.push({
         text: 'Dashboard',
@@ -131,6 +133,10 @@ function UserAdd() {
         url: null,
         active: true,
     })
+
+    let save = () => {
+        
+    }
 
     return (
         <>
@@ -152,23 +158,23 @@ function UserAdd() {
                             </li>
                         </ul>
                         <div className="tabcontent-border">
-                            <form method="post" onSubmit={(e) => { e.preventDefault() }}>
+                            <form method="post" onSubmit={(e) => { e.preventDefault(); save() }}>
                                 <div className="form-row">
                                     <div className="col-md-4 form-group">
                                         <label className="required">Nome</label>
-                                        <input type="text" className="form-control" />
+                                        <input type="text" className="form-control" onChange={e => setUser({ ...user, name: e.target.value })} />
                                     </div>
                                     <div className="col-md-4 form-group">
                                         <label className="required">Usuário</label>
-                                        <input type="text" className="form-control" />
+                                        <input type="text" className="form-control" onChange={e => setUser({ ...user, username: e.target.value })} />
                                     </div>
                                     <div className="col-md-4 form-group">
                                         <label className="required">Senha</label>
-                                        <input type="password" className="form-control" />
+                                        <input type="password" className="form-control" onChange={e => setUser({ ...user, pass: e.target.value })} />
                                     </div>
                                     <div className="col-md-4 form-group">
                                         <label className="required">Confirmar senha</label>
-                                        <input type="password" className="form-control" />
+                                        <input type="password" className="form-control" onChange={e => setUser({ ...user, passConfirm: e.target.value })} />
                                     </div>
                                 </div>
                                 <div className="clearfix text-left">
