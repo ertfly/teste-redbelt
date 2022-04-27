@@ -42,9 +42,9 @@ function UserAdd() {
     return (
         <>
             <HeaderIn breadcrumb={breadcrumb} />
-            Usuários lista
+            Usuários add
         </>
     )
 }
 
-export default { UserList, UserAdd }
+export { UserList, UserAdd }
