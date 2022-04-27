@@ -53,7 +53,7 @@ function UserList() {
                                 <p className="card-text">Gestão dos dados do usuário</p>
                             </div>
                             <div>
-                                <a href="/" className="btn btn-primary">
+                                <a href="/register/user/add" className="btn btn-primary">
                                     <i className="fa fa-plus fa-white"></i> Adicionar
                                 </a>
                             </div>
@@ -111,7 +111,7 @@ function UserList() {
 }
 
 function UserAdd() {
-    if (sessionStorage.getItem('logged') !== 1) {
+    if (sessionStorage.getItem('logged') != 1) {
         document.location.href = '/account/login'
     }
 
@@ -135,7 +135,50 @@ function UserAdd() {
     return (
         <>
             <HeaderIn breadcrumb={breadcrumb} />
-            Usuários add
+            <div className="container">
+                <div className="card">
+                    <div className="card-body">
+
+                        <div className="d-flex justify-content-between">
+                            <div>
+                                <h2 className="card-title">Usuário - Novo</h2>
+                                <p className="card-text">Preencha os campos para inserir as informações</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <ul className="nav nav-tabs mt-4">
+                            <li className="nav-item">
+                                <a className="nav-link active" href="/register/user/add">Informações</a>
+                            </li>
+                        </ul>
+                        <div className="tabcontent-border">
+                            <form method="post" onSubmit={(e) => { e.preventDefault() }}>
+                                <div className="form-row">
+                                    <div className="col-md-4 form-group">
+                                        <label className="required">Nome</label>
+                                        <input type="text" className="form-control" />
+                                    </div>
+                                    <div className="col-md-4 form-group">
+                                        <label className="required">Usuário</label>
+                                        <input type="text" className="form-control" />
+                                    </div>
+                                    <div className="col-md-4 form-group">
+                                        <label className="required">Senha</label>
+                                        <input type="password" className="form-control" />
+                                    </div>
+                                    <div className="col-md-4 form-group">
+                                        <label className="required">Confirmar senha</label>
+                                        <input type="password" className="form-control" />
+                                    </div>
+                                </div>
+                                <div className="clearfix text-left">
+                                    <button className="btn btn-primary" type="submit"><i className="mr-1 fas fa-plus fa-white"></i> Adicionar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }
