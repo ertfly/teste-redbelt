@@ -1,7 +1,5 @@
 import HeaderIn from "../HeaderIn"
-import { useDispatch, useSelector } from 'react-redux';
-import { setListUser } from "../../Redux/Actions/User";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Loader from "../Loader";
 import axios from "axios";
 import { BASE_URL } from './../../Config'
@@ -11,10 +9,9 @@ function UserList() {
         document.location.href = '/account/login'
     }
 
-    const [rows, setRows] = useState([])
-
+    let [rows, setRows] = useState([])
     let [error, setError] = useState('')
-    let [loader, setLoader] = useState(false)
+    let [loader, setLoader] = useState(true)
 
     axios.get(BASE_URL + 'user', { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
         let response = request.data.response
@@ -26,6 +23,7 @@ function UserList() {
             return;
         }
 
+        setLoader(false)
         setRows(data.rows)
     })
 
