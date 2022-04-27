@@ -1,5 +1,4 @@
 import HeaderOut from './../HeaderOut'
-import Loader from '../Loader';
 import { useState } from 'react';
 import './Login.css'
 import { useDispatch } from 'react-redux';
@@ -38,7 +37,6 @@ function Login() {
 
     return (
         <>
-            <Loader show={loader} />
             <HeaderOut />
             <div className="h-100 d-flex align-items-center justify-content-center">
                 <div className="login d-flex flex-column justify-content-center">
