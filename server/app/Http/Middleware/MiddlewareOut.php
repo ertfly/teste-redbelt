@@ -9,7 +9,6 @@ use Carbon\Carbon;
 use Closure;
 use Exception;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
