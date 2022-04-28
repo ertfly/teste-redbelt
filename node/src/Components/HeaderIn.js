@@ -14,6 +14,7 @@ function HeaderIn(props) {
     const [modalClose, setModalClose] = useState(false)
     const [loader, setLoader] = useState(false)
     const [error, setError] = useState('')
+    const [off, setOff] = useState(false)
 
     let logout = () => {
         setLoader(true)
@@ -28,11 +29,11 @@ function HeaderIn(props) {
 
             sessionStorage.setItem('name', '')
             sessionStorage.setItem('logged', 0)
-            window.setTimeout(function () { document.location.href = '/account/login' }, 500)
+            setOff(true)
         })
     }
 
-    if (sessionStorage.getItem('logged') != 1) {
+    if (sessionStorage.getItem('logged') != 1 || off) {
         return <Redirect to="/account/login" />
     }
 
