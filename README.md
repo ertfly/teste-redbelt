@@ -118,3 +118,9 @@ $ docker exec -it teste.api vendor/bin/phpunit
 
 ## Rodando a aplicação
 - Na porta externa configurada no container **teste.api** no utilize para acessar o sistema http://localhost:{porta_configurada}/, caso não tenha alterado as portas basta acessar a parte default da configuração http://localhost:8016
+
+## O que foi criado
+- Seguindo os requisitos foi criado um CRUD de incidentes e adicionei um crud de usuários de acesso ao sistema.
+
+## Dos requisitos algum não foi usado ?
+- Todos os requisitos foram aplicados no teste com excessão do **redux**, no mais tudo foi seguido de acordo com o enunciado do teste.
