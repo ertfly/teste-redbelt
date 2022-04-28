@@ -3,12 +3,11 @@ import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import axios from "axios";
 import { BASE_URL } from './../Config'
-import { useParams } from 'react-router-dom'
+import { Redirect, useParams } from "react-router";
 
 function IncidentList() {
-    if (sessionStorage.getItem('logged') != 1) {
-        document.location.href = '/account/login'
-    }
+
+    return <Redirect push to="/register/user"/>
 
     let [rows, setRows] = useState([])
     let [error, setError] = useState('')
@@ -33,6 +32,10 @@ function IncidentList() {
     }
 
     useEffect(() => {
+        // if (sessionStorage.getItem('logged') != 1) {
+            // document.location.href = '/account/login'
+            
+        // }
         list()
     }, [])
 
@@ -68,7 +71,7 @@ function IncidentList() {
     return (
         <>
             <Loader show={loader} />
-            <div className={'modal fade' + (modalDelete ? ' show' : '') + (modalDelete ? ' d-block' : '')} tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+            <div className={'modal fade' + (modalDelete ? ' show' : '') + (modalDelete ? ' d-block' : '')}>
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -85,9 +88,9 @@ function IncidentList() {
                     </div>
                 </div>
             </div>
-            <div class={'modal-backdrop fade show' + (modalDelete ? '' : ' d-none')} id="backdrop"></div>
-            <HeaderIn breadcrumb={breadcrumb} />
-            <div class={'alert alert-danger mt-3' + (error ? ' d-block' : ' d-none')}>{error}</div>
+            <div className={'modal-backdrop fade show' + (modalDelete ? '' : ' d-none')} id="backdrop"></div>
+            <HeaderIn breadcrumb={breadcrumb} key="headerIn" />
+            <div className={'alert alert-danger mt-3' + (error ? ' d-block' : ' d-none')}>{error}</div>
             <div className="container">
                 <div className="card">
                     <div className="card-body">
@@ -124,7 +127,7 @@ function IncidentList() {
                                         {rows.length <= 0 ? (
                                             <>
                                                 <tr>
-                                                    <td className="text-center" colspan="20">Nenhum registro encontrado!</td>
+                                                    <td className="text-center" colSpan="20">Nenhum registro encontrado!</td>
                                                 </tr>
                                             </>
                                         ) : (
@@ -227,8 +230,8 @@ function IncidentAdd() {
     return (
         <>
             <Loader show={loader} />
-            <HeaderIn breadcrumb={breadcrumb} />
-            <div class={'alert alert-danger' + (error ? ' d-block' : ' d-none')}>{error}</div>
+            <HeaderIn breadcrumb={breadcrumb} key="headerIn" />
+            <div className={'alert alert-danger' + (error ? ' d-block' : ' d-none')}>{error}</div>
             <div className="container">
                 <div className="card">
                     <div className="card-body">
@@ -355,8 +358,8 @@ function IncidentEdit() {
     return (
         <>
             <Loader show={loader} />
-            <HeaderIn breadcrumb={breadcrumb} />
-            <div class={'alert alert-danger' + (error ? ' d-block' : ' d-none')}>{error}</div>
+            <HeaderIn breadcrumb={breadcrumb} key="headerIn" />
+            <div className={'alert alert-danger' + (error ? ' d-block' : ' d-none')}>{error}</div>
             <div className="container">
                 <div className="card">
                     <div className="card-body">

@@ -5,8 +5,9 @@ import { BASE_URL } from './../Config';
 
 function HeaderIn(props) {
 
-    if (typeof (props.breadcrumb) == 'undefined' || !props.breadcrumb) {
-        props.breadcrumb = [];
+    let breadcrumb = props.breadcrumb
+    if(!breadcrumb){
+        breadcrumb = []
     }
 
     const [modalClose, setModalClose] = useState(false)
@@ -32,9 +33,9 @@ function HeaderIn(props) {
 
     return (
         <>
-            <Loader show={loader} />
+            <Loader show={loader} key="loaderHeader" />
             <link href="/assets/css/base.in.css" rel="stylesheet" nonce="rAnd0m" />
-            <div className={'modal fade' + (modalClose ? ' show' : '') + (modalClose ? ' d-block' : '')} tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+            <div className={'modal fade' + (modalClose ? ' show' : '') + (modalClose ? ' d-block' : '')}>
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -51,7 +52,7 @@ function HeaderIn(props) {
                     </div>
                 </div>
             </div>
-            <div class={'modal-backdrop fade show' + (modalClose ? '' : ' d-none')} id="backdrop"></div>
+            <div className={'modal-backdrop fade show' + (modalClose ? '' : ' d-none')} id="backdrop"></div>
             <header className="d-none d-sm-block">
                 <div className="container">
                     <div className="row">
@@ -98,26 +99,23 @@ function HeaderIn(props) {
             <div className="container d-none d-sm-block mt-3">
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb breadcrumb-bg">
-                        {props.breadcrumb.map((item) => (
-                            <>
-                                {item.active ? (
-                                    <>
-                                        <li className="breadcrumb-item active">{item.text}</li>
-                                    </>
-                                ) : (
-                                    <>
-                                        <li className="breadcrumb-item"><a href={item.url}>{item.text}</a></li>
-                                    </>
-                                )}
+                        {breadcrumb.map((item, i) => {
+                            if(item.active){
+                                return (
+                                    <li key={i} className="breadcrumb-item active">{item.text}</li>
+                                )
+                            }
 
-                            </>
-                        ))}
+                            return (
+                                <li key={i} className="breadcrumb-item"><a href={item.url}>{item.text}</a></li>
+                            )
+                        })}
                     </ol>
                 </nav>
             </div>
 
             <div className="pt-3 d-block d-sm-none"></div>
-            <div class={'alert alert-danger' + (error ? ' d-block' : ' d-none')}>{error}</div>
+            <div className={'alert alert-danger' + (error ? ' d-block' : ' d-none')}>{error}</div>
         </>
     )
 }

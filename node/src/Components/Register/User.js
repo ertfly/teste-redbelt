@@ -69,7 +69,7 @@ function UserList() {
     return (
         <>
             <Loader show={loader} />
-            <div className={'modal fade' + (modalDelete ? ' show' : '') + (modalDelete ? ' d-block' : '')} tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+            <div className={'modal fade' + (modalDelete ? ' show' : '') + (modalDelete ? ' d-block' : '')}>
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -86,9 +86,9 @@ function UserList() {
                     </div>
                 </div>
             </div>
-            <div class={'modal-backdrop fade show' + (modalDelete ? '' : ' d-none')} id="backdrop"></div>
-            <HeaderIn breadcrumb={breadcrumb} />
-            <div class={'alert alert-danger mt-3' + (error ? ' d-block' : ' d-none')}>{error}</div>
+            <div className={'modal-backdrop fade show' + (modalDelete ? '' : ' d-none')} id="backdrop"></div>
+            <HeaderIn breadcrumb={breadcrumb} key="headerIn" />
+            <div className={'alert alert-danger mt-3' + (error ? ' d-block' : ' d-none')}>{error}</div>
             <div className="container">
                 <div className="card">
                     <div className="card-body">
@@ -121,25 +121,21 @@ function UserList() {
                                     </thead>
                                     <tbody>
                                         {rows.length <= 0 ? (
-                                            <>
-                                                <tr>
-                                                    <td className="text-center" colspan="20">Nenhum registro encontrado!</td>
-                                                </tr>
-                                            </>
+                                            <tr>
+                                                <td className="text-center" colSpan="20">Nenhum registro encontrado!</td>
+                                            </tr>
                                         ) : (
                                             <>
-                                                {rows.map((a) => (
-                                                    <>
-                                                        <tr>
-                                                            <td>{a.id}</td>
-                                                            <td>{a.name}</td>
-                                                            <td>{a.username}</td>
-                                                            <td className="text-right">
-                                                                <a href={'/register/user/edit/' + a.id} className="btn btn-primary btn-sm mr-1" title="Editar registro"><i className="fa fa-pencil fa-white"></i></a>
-                                                                <button type="button" className="btn btn-danger btn-sm" title="Excluir registro" onClick={(e) => { setId(a.id); setModalDelete(true) }}><i className="fa fa-trash fa-white"></i></button>
-                                                            </td>
-                                                        </tr>
-                                                    </>
+                                                {rows.map((a, i) => (
+                                                    <tr key={i}>
+                                                        <td>{a.id}</td>
+                                                        <td>{a.name}</td>
+                                                        <td>{a.username}</td>
+                                                        <td className="text-right">
+                                                            <a href={'/register/user/edit/' + a.id} className="btn btn-primary btn-sm mr-1" title="Editar registro"><i className="fa fa-pencil fa-white"></i></a>
+                                                            <button type="button" className="btn btn-danger btn-sm" title="Excluir registro" onClick={(e) => { setId(a.id); setModalDelete(true) }}><i className="fa fa-trash fa-white"></i></button>
+                                                        </td>
+                                                    </tr>
                                                 ))}
                                             </>
                                         )}
@@ -200,8 +196,8 @@ function UserAdd() {
     return (
         <>
             <Loader show={loader} />
-            <HeaderIn breadcrumb={breadcrumb} />
-            <div class={'alert alert-danger' + (error ? ' d-block' : ' d-none')}>{error}</div>
+            <HeaderIn breadcrumb={breadcrumb} key="headerIn" />
+            <div className={'alert alert-danger' + (error ? ' d-block' : ' d-none')}>{error}</div>
             <div className="container">
                 <div className="card">
                     <div className="card-body">
@@ -323,8 +319,8 @@ function UserEdit() {
     return (
         <>
             <Loader show={loader} />
-            <HeaderIn breadcrumb={breadcrumb} />
-            <div class={'alert alert-danger' + (error ? ' d-block' : ' d-none')}>{error}</div>
+            <HeaderIn breadcrumb={breadcrumb} key="headerIn" />
+            <div className={'alert alert-danger' + (error ? ' d-block' : ' d-none')}>{error}</div>
             <div className="container">
                 <div className="card">
                     <div className="card-body">

@@ -42,7 +42,7 @@ function Login() {
     return (
         <>
             <Loader show={loader} />
-            <HeaderOut />
+            <HeaderOut key="headerOut" />
             <div className="h-100 d-flex align-items-center justify-content-center">
                 <div className="login d-flex flex-column justify-content-center">
                     <div className="title d-flex flex-row align-items-center mt-3 mb-4">

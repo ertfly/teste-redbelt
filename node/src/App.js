@@ -5,8 +5,7 @@ import { UserList, UserAdd, UserEdit } from './Components/Register/User'
 import { IncidentList, IncidentAdd, IncidentEdit } from './Components/Incident'
 import axios from 'axios'
 import { BASE_URL } from './Config';
-import { createBrowserHistory } from 'history';
-const history = createBrowserHistory();
+
 
 let first = false
 
@@ -31,7 +30,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter history={history}>
+      <BrowserRouter>
         <Switch>
           <Route path="/incident/edit/:id">
             <IncidentEdit key="IncidentEdit" />
