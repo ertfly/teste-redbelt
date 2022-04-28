@@ -68,6 +68,7 @@ $ docker network create teste-dev
       - '3307:3306'
     ...
 ``` 
+- O atributo **container_name** do container **teste.db** será o nome do host do banco de dados, uma vez em rede brigde ao subir um container ele tornar o nome teste.db como host do banco de dados localizado no arquivo **.env** do laravel.
 
 - Uma vez alterado o arquivo **docker-compose.yml** vamos utilizar o docker-compose para criar os containers
 ```
