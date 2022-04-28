@@ -126,4 +126,4 @@ $ docker exec -it teste.api vendor/bin/phpunit
 - Todos os requisitos foram aplicados no teste com excessão do **redux**, no mais tudo foi seguido de acordo com o enunciado do teste.
 
 ## Tela inicial
-![Tux, the Linux mascot](https://uploads-ssl.webflow.com/623a134001afadc26b238f7c/623a134001afadd03a238f97_logo-redbelt.png)
+<h1 align="center">![Tux, the Linux mascot](https://uploads-ssl.webflow.com/623a134001afadc26b238f7c/623a134001afadd03a238f97_logo-redbelt.png)</h1>
