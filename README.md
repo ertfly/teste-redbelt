@@ -1,4 +1,4 @@
-<div style="background-color:#999;text-align:center"><img src="https://uploads-ssl.webflow.com/623a134001afadc26b238f7c/623a134001afadd03a238f97_logo-redbelt.png" /></div>
+<p align="center"><img src="https://uploads-ssl.webflow.com/623a134001afadc26b238f7c/623a134001afadd03a238f97_logo-redbelt.png" /></p>
 
 # Periodo de desenvolvimento
 - Início: 25/04/2022
