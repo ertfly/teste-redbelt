@@ -69,7 +69,7 @@ $ docker-compose up -d
 ```
 $ docker exec -it teste.api composer install
 ```
-> **_NOTA:_**  O nome **teste.api** é o nome dado no container via atributo **container_name**, caso o atributo não é aceite só renomear o container utilizando o comando `docker rename {id_do_container} teste.api`
+> **_NOTA:_**  O nome **teste.api** é o nome dado no container via atributo **container_name**, caso o atributo não é aceite só renomear o container utilizando o comando `docker rename {id_do_container} teste.api`, o id do container pode ser consultado utilizando o comando `docker ps` procure o id na coluna **CONTAINER ID**.
 
 
 docker exec -it teste.api php artisan migrate
