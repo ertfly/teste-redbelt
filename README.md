@@ -1,4 +1,4 @@
-# Tempo de desenvolvimento
+# Periodo de desenvolvimento
 - Início: 25/04/2022
 - Fim: 28/04/2022
 
