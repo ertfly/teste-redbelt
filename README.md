@@ -58,6 +58,10 @@ $ cp .env.example .env
 > **_NOTA:_**  Não mexa no arquivo **.env** pois já esta configurando com a estrutura dos containers
 > **_NOTA:_**  O docker-compose foi configurado para que os containers tenha o seus hosts utilizando o atributo ***container_name**, exemplo o **DB_HOST** do arquivo **.env** ficaria **DB_HOST=teste.db** o nome dado no atributo, então é necessário que o docker-compose, na versão sitada, suba os containers com os nomes definidos, caso não terá que alterar os dados de acesso do banco, caso OK não precisa alterar pode deixar os dados como estão apenas execute a cópia.
 
+- Volte a pasta raíz do projeto.
+```
+$ cd ../
+```
 
 - Criei o network dos containers
 ```
