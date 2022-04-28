@@ -1,4 +1,8 @@
-# Requisitos #
+# Tempo de desenvolvimento
+- Início: 25/04/2022
+- Fim: 28/04/2022
+
+# Requisitos
 - Docker
 - Docker Compose (aceite version '2')
 
@@ -26,9 +30,6 @@ $ git clone https://github.com/ertfly/teste-redbelt.git
 $ cd teste-redbelt
 ```
 
-docker exec -it teste.api composer install
-docker exec -it teste.api php artisan migrate
-
 - Copie o arquivo **docker-compose.sample.yml** renomeando para **docker-compose.yml**
 ```
 $ cp docker-compose.sample.yml docker-compose.yml
@@ -40,6 +41,7 @@ $ cp docker-compose.sample.yml docker-compose.yml
 ```
 $ docker network create teste-dev
 ```
+> **_NOTA:_**  Se a rede teste-dev já existir ignore.
 
 - Altere o arquivo **docker-compose.yml** substitua na parte **8016** pela porta web disponível na sua máquina
 ```
@@ -56,4 +58,7 @@ $ docker network create teste-dev
       - '3307:3306'
     ...
 ``` 
-```
+
+
+docker exec -it teste.api composer install
+docker exec -it teste.api php artisan migrate
