@@ -55,7 +55,8 @@ $ cd server
 ```
 $ cp .env.example .env
 ```
-> **_NOTA:_**  O docker-compose foi configurado para que os containers tenha o seus hosts via nome dado no atributo ***container_name**, então é necessário que o docker-compose na versão sitada suba os containers com os nomes definidos, caso não terá que alterar os dados de acesso do banco, caso OK não precisa alterar pode deixar os dados como estão apenas execute a cópia.
+> **_NOTA:_**  Não mexa no arquivo **.env** pois já esta configurando com a estrutura dos containers
+> **_NOTA:_**  O docker-compose foi configurado para que os containers tenha o seus hosts utilizando o atributo ***container_name**, exemplo o **DB_HOST** do arquivo **.env** ficaria **DB_HOST=teste.db** o nome dado no atributo, então é necessário que o docker-compose, na versão sitada, suba os containers com os nomes definidos, caso não terá que alterar os dados de acesso do banco, caso OK não precisa alterar pode deixar os dados como estão apenas execute a cópia.
 
 
 - Criei o network dos containers
@@ -104,3 +105,9 @@ $ docker exec -it teste.api php artisan migrate
 $ sh chmod.sh
 ```
 > **_NOTA:_**  O arquivo **chmod.sh** é um bash aplicando chmod nas pastas necessárias
+
+## Testes unitários
+- Caso queira executar os testes unitários, foram criados alguns cenários para atestar o conhecimento em PHPUnit.
+```
+$ docker exec -it teste.api vendor/bin/phpunit 
+```
