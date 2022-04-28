@@ -20,7 +20,7 @@ $ docker pull ertfly/php7.4.9-apache-buster
 $ docker pull mariadb
 ```
 
-- Clone o projeto
+- Escolha uma pasta de preferência e clone o projeto
 ```
 $ git clone https://github.com/ertfly/teste-redbelt.git
 ```
