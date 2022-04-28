@@ -1,28 +1,15 @@
 version: '2'
 services:
-  teste-front:
-    container_name: teste.front
-    image: "node:8"
-    user: "node"
-    working_dir: /home/node/app
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - ./node/:/home/node/app
-    expose:
-      - "8081"
-    command: "npm start"
-    networks:
-      - teste-net
   teste-back:
     container_name: teste.api
     image: ertfly/php7.4.9-apache-buster
     build: .
     restart: always
+    working_dir: /app
     ports:
       - '8016:80'
     volumes:
-      - ./app/:/app
+      - ./server/:/app
     networks:
       - teste-net
   teste-db:

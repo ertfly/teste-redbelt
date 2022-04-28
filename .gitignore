@@ -1,8 +1,8 @@
 **.DS_Store
 
 /docker-compose.yml
+/docker-compose.old.yml
 /server/php_errors.log
-/node/src/Config.js
 
 /db/*.*
 /db/*

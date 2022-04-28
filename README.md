@@ -26,6 +26,9 @@ $ git clone https://github.com/ertfly/teste-redbelt.git
 $ cd teste-redbelt
 ```
 
+docker exec -it teste.api composer install
+docker exec -it teste.api php artisan migrate
+
 - Copie o arquivo **docker-compose.sample.yml** renomeando para **docker-compose.yml**
 ```
 $ cp docker-compose.sample.yml docker-compose.yml
