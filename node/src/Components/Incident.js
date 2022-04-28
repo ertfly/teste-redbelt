@@ -3,12 +3,9 @@ import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import axios from "axios";
 import { BASE_URL } from './../Config'
-import { Redirect, useParams } from "react-router";
+import { useParams } from "react-router";
 
 function IncidentList() {
-
-    return <Redirect push to="/register/user"/>
-
     let [rows, setRows] = useState([])
     let [error, setError] = useState('')
     let [loader, setLoader] = useState(true)
@@ -32,10 +29,6 @@ function IncidentList() {
     }
 
     useEffect(() => {
-        // if (sessionStorage.getItem('logged') != 1) {
-            // document.location.href = '/account/login'
-            
-        // }
         list()
     }, [])
 
@@ -70,7 +63,7 @@ function IncidentList() {
 
     return (
         <>
-            <Loader show={loader} />
+            <Loader show={loader} key="loader" />
             <div className={'modal fade' + (modalDelete ? ' show' : '') + (modalDelete ? ' d-block' : '')}>
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
@@ -132,20 +125,18 @@ function IncidentList() {
                                             </>
                                         ) : (
                                             <>
-                                                {rows.map((a) => (
-                                                    <>
-                                                        <tr>
-                                                            <td>{a.id}</td>
-                                                            <td>{a.title}</td>
-                                                            <td>{a.critical}</td>
-                                                            <td>{a.type}</td>
-                                                            <td>{a.status}</td>
-                                                            <td className="text-right">
-                                                                <a href={'/incident/edit/' + a.id} className="btn btn-primary btn-sm mr-1" title="Editar registro"><i className="fa fa-pencil fa-white"></i></a>
-                                                                <button type="button" className="btn btn-danger btn-sm" title="Excluir registro" onClick={(e) => { setId(a.id); setModalDelete(true) }}><i className="fa fa-trash fa-white"></i></button>
-                                                            </td>
-                                                        </tr>
-                                                    </>
+                                                {rows.map((a, i) => (
+                                                    <tr key={i}>
+                                                        <td>{a.id}</td>
+                                                        <td>{a.title}</td>
+                                                        <td>{a.critical}</td>
+                                                        <td>{a.type}</td>
+                                                        <td>{a.status}</td>
+                                                        <td className="text-right">
+                                                            <a href={'/incident/edit/' + a.id} className="btn btn-primary btn-sm mr-1" title="Editar registro"><i className="fa fa-pencil fa-white"></i></a>
+                                                            <button type="button" className="btn btn-danger btn-sm" title="Excluir registro" onClick={(e) => { setId(a.id); setModalDelete(true) }}><i className="fa fa-trash fa-white"></i></button>
+                                                        </td>
+                                                    </tr>
                                                 ))}
                                             </>
                                         )}
@@ -162,14 +153,10 @@ function IncidentList() {
 }
 
 function IncidentAdd() {
-    if (sessionStorage.getItem('logged') != 1) {
-        document.location.href = '/account/login'
-    }
-
     let [incident, setIncident] = useState({})
     let [loader, setLoader] = useState(true)
     let [error, setError] = useState('')
-    let [selects,setSelects] = useState({
+    let [selects, setSelects] = useState({
         criticals: [],
         types: [],
         status: [],
@@ -208,9 +195,9 @@ function IncidentAdd() {
         })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         load()
-    },[])
+    }, [])
 
     let save = () => {
         setLoader(true)
@@ -255,7 +242,7 @@ function IncidentAdd() {
                                         <label className="required">Criticidade</label>
                                         <select className="form-control">
                                             <option value="">Selecione</option>
-                                            {selects.criticals.map((a)=>{
+                                            {selects.criticals.map((a) => {
                                                 return (
                                                     <>
                                                         <option value={a.id} selected={a.selected}>{a.description}</option>
@@ -287,10 +274,6 @@ function IncidentAdd() {
 }
 
 function IncidentEdit() {
-    if (sessionStorage.getItem('logged') != 1) {
-        document.location.href = '/account/login'
-    }
-
     let { id } = useParams();
 
     if (!id) {

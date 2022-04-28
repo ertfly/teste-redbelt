@@ -6,10 +6,6 @@ import { BASE_URL } from './../../Config'
 import { useParams } from 'react-router-dom'
 
 function UserList() {
-    if (sessionStorage.getItem('logged') != 1) {
-        document.location.href = '/account/login'
-    }
-
     let [rows, setRows] = useState([])
     let [error, setError] = useState('')
     let [loader, setLoader] = useState(true)
@@ -53,7 +49,6 @@ function UserList() {
         setLoader(true)
         axios.delete(BASE_URL + 'user/' + id, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
             let response = request.data.response
-            let data = request.data.data
 
             if (response.action !== 0) {
                 setLoader(false)
@@ -152,9 +147,6 @@ function UserList() {
 }
 
 function UserAdd() {
-    if (sessionStorage.getItem('logged') != 1) {
-        document.location.href = '/account/login'
-    }
 
     let [user, setUser] = useState({})
     let [loader, setLoader] = useState(false)
@@ -181,7 +173,6 @@ function UserAdd() {
         setLoader(true)
         axios.post(BASE_URL + 'user', user, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
             let response = request.data.response
-            let data = request.data.data
 
             if (response.action !== 0) {
                 setLoader(false)
@@ -247,9 +238,6 @@ function UserAdd() {
 }
 
 function UserEdit() {
-    if (sessionStorage.getItem('logged') != 1) {
-        document.location.href = '/account/login'
-    }
 
     let { id } = useParams();
 
@@ -298,13 +286,12 @@ function UserEdit() {
                 username: data.username,
             })
         })
-    }, []);
+    }, [id]);
 
     let save = () => {
         setLoader(true)
         axios.put(BASE_URL + 'user/' + id, user, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
             let response = request.data.response
-            let data = request.data.data
 
             if (response.action !== 0) {
                 setLoader(false)

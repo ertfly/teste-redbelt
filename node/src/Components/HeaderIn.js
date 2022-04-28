@@ -2,11 +2,12 @@ import { useState } from "react";
 import Loader from './Loader'
 import axios from 'axios'
 import { BASE_URL } from './../Config';
+import { Redirect } from "react-router-dom";
 
 function HeaderIn(props) {
 
     let breadcrumb = props.breadcrumb
-    if(!breadcrumb){
+    if (!breadcrumb) {
         breadcrumb = []
     }
 
@@ -29,6 +30,10 @@ function HeaderIn(props) {
             sessionStorage.setItem('logged', 0)
             window.setTimeout(function () { document.location.href = '/account/login' }, 500)
         })
+    }
+
+    if (sessionStorage.getItem('logged') != 1) {
+        return <Redirect to="/account/login" />
     }
 
     return (
@@ -71,7 +76,7 @@ function HeaderIn(props) {
                                         </div>
                                         <div className="profile-info d-flex flex-column align-items-end ml-2">
                                             <a href="/" className="info1">{sessionStorage.getItem('name')}</a>
-                                            <a href="#close" className="info2" onClick={() => { setModalClose(true) }}>Sair</a>
+                                            <a href="#a" className="info2" onClick={(e) => { e.preventDefault(); setModalClose(true) }}>Sair</a>
                                         </div>
                                     </div>
                                 </div>
@@ -84,7 +89,7 @@ function HeaderIn(props) {
                 <div className="container">
                     <ul>
                         <li className="sub">
-                            <a href="#" target="_self">Cadastros</a>
+                            <a href="#a" target="_self">Cadastros</a>
                             <ul>
                                 <li><a href="/register/user" target="_self"><i className="fa fa-cog"></i>Usuários</a></li>
                             </ul>
@@ -100,7 +105,7 @@ function HeaderIn(props) {
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb breadcrumb-bg">
                         {breadcrumb.map((item, i) => {
-                            if(item.active){
+                            if (item.active) {
                                 return (
                                     <li key={i} className="breadcrumb-item active">{item.text}</li>
                                 )
