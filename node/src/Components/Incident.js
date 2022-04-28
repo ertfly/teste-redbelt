@@ -53,7 +53,6 @@ function IncidentList() {
         setLoader(true)
         axios.delete(BASE_URL + 'incident/' + id, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
             let response = request.data.response
-            let data = request.data.data
 
             if (response.action !== 0) {
                 setLoader(false)
@@ -105,7 +104,7 @@ function IncidentList() {
                         </div>
                         <ul className="nav nav-tabs mt-4" id="myTab" role="tablist">
                             <li className="nav-item">
-                                <a className="nav-link active" href="#">Consulta</a>
+                                <a className="nav-link active" href="/incident">Consulta</a>
                             </li>
                         </ul>
                         <div className="tabcontent-border">
@@ -164,7 +163,7 @@ function IncidentAdd() {
         document.location.href = '/account/login'
     }
 
-    let [user, setUser] = useState({})
+    let [incident, setIncident] = useState({})
     let [loader, setLoader] = useState(false)
     let [error, setError] = useState('')
 
@@ -187,9 +186,8 @@ function IncidentAdd() {
 
     let save = () => {
         setLoader(true)
-        axios.post(BASE_URL + 'incident', user, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+        axios.post(BASE_URL + 'incident', incident, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
             let response = request.data.response
-            let data = request.data.data
 
             if (response.action !== 0) {
                 setLoader(false)
@@ -212,7 +210,7 @@ function IncidentAdd() {
 
                         <div className="d-flex justify-content-between">
                             <div>
-                                <h2 className="card-title">Usuário - Novo</h2>
+                                <h2 className="card-title">Incidente - Novo</h2>
                                 <p className="card-text">Preencha os campos para inserir as informações</p>
                             </div>
                         </div>
@@ -225,21 +223,9 @@ function IncidentAdd() {
                         <div className="tabcontent-border">
                             <form method="post" onSubmit={(e) => { e.preventDefault(); save() }}>
                                 <div className="form-row">
-                                    <div className="col-md-4 form-group">
-                                        <label className="required">Nome</label>
-                                        <input type="text" className="form-control" onChange={e => setUser({ ...user, name: e.target.value })} />
-                                    </div>
-                                    <div className="col-md-4 form-group">
-                                        <label className="required">Usuário</label>
-                                        <input type="text" className="form-control" onChange={e => setUser({ ...user, username: e.target.value })} />
-                                    </div>
-                                    <div className="col-md-4 form-group">
-                                        <label className="required">Senha</label>
-                                        <input type="password" className="form-control" onChange={e => setUser({ ...user, pass: e.target.value })} />
-                                    </div>
-                                    <div className="col-md-4 form-group">
-                                        <label className="required">Confirmar senha</label>
-                                        <input type="password" className="form-control" onChange={e => setUser({ ...user, passConfirm: e.target.value })} />
+                                    <div className="col-md-12 form-group">
+                                        <label className="required">Títutlo</label>
+                                        <input type="text" className="form-control" onChange={e => setIncident({ ...incident, title: e.target.value })} />
                                     </div>
                                 </div>
                                 <div className="clearfix text-left">
@@ -306,13 +292,12 @@ function IncidentEdit() {
                 username: data.username,
             })
         })
-    }, []);
+    }, [id]);
 
     let save = () => {
         setLoader(true)
         axios.put(BASE_URL + 'incident/' + id, user, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
             let response = request.data.response
-            let data = request.data.data
 
             if (response.action !== 0) {
                 setLoader(false)
@@ -335,7 +320,7 @@ function IncidentEdit() {
 
                         <div className="d-flex justify-content-between">
                             <div>
-                                <h2 className="card-title">Usuário - #{id} - Editar</h2>
+                                <h2 className="card-title">Incidente - #{id} - Editar</h2>
                                 <p className="card-text">Preencha os campos para inserir as informações</p>
                             </div>
                         </div>

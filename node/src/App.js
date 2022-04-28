@@ -32,15 +32,16 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
-          <Route path="/incident">
-            <IncidentList key="IncidentList" />
+          <Route path="/incident/edit/:id">
+            <IncidentEdit key="IncidentEdit" />
           </Route>
           <Route path="/incident/add">
             <IncidentAdd key="IncidentAdd" />
           </Route>
-          <Route path="/incident/edit/:id">
-            <IncidentEdit key="IncidentEdit" />
+          <Route path="/incident">
+            <IncidentList key="IncidentList" />
           </Route>
+
           <Route path="/register/user/edit/:id">
             <UserEdit key="UserEdit" />
           </Route>
@@ -50,6 +51,7 @@ function App() {
           <Route path="/register/user">
             <UserList key="UserList" />
           </Route>
+
           <Route path="/account/login">
             <Login key="Login" />
           </Route>
