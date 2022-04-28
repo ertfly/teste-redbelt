@@ -2,7 +2,6 @@ import { useState } from "react";
 import Loader from './Loader'
 import axios from 'axios'
 import { BASE_URL } from './../Config';
-import { Redirect } from "react-router-dom";
 
 function HeaderIn(props) {
 
