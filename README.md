@@ -1,5 +1,3 @@
-<p align="center"><img src="https://uploads-ssl.webflow.com/623a134001afadc26b238f7c/623a134001afadd03a238f97_logo-redbelt.png" /></p>
-
 # Periodo de desenvolvimento
 - Início: 25/04/2022
 - Fim: 28/04/2022
