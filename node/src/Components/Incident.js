@@ -299,12 +299,20 @@ function IncidentEdit() {
         document.location.href = '/incident'
     }
 
-    let [user, setUser] = useState({
-        name: '',
-        username: '',
+    let [incident, setIncident] = useState({
+        title: '',
+        description: '',
+        criticalId: null,
+        typeId: null,
+        statusId: null,
     })
     let [loader, setLoader] = useState(true)
     let [error, setError] = useState('')
+    let [selects, setSelects] = useState({
+        criticals: [],
+        types: [],
+        status: [],
+    })
 
     let breadcrumb = [];
     breadcrumb.push({
@@ -335,16 +343,24 @@ function IncidentEdit() {
             }
 
             setLoader(false)
-            setUser({
-                name: data.name,
-                username: data.username,
+            setIncident({
+                title: data.title,
+                description: data.description,
+                criticalId: data.criticalId,
+                typeId: data.typeId,
+                statusId: data.statusId,
+            })
+            setSelects({
+                criticals: data.criticals,
+                types: data.types,
+                status: data.status,
             })
         })
     }, [id]);
 
     let save = () => {
         setLoader(true)
-        axios.put(BASE_URL + 'incident/' + id, user, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+        axios.put(BASE_URL + 'incident/' + id, incident, { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
             let response = request.data.response
 
             if (response.action !== 0) {
@@ -365,7 +381,6 @@ function IncidentEdit() {
             <div className="container">
                 <div className="card">
                     <div className="card-body">
-
                         <div className="d-flex justify-content-between">
                             <div>
                                 <h2 className="card-title">Incidente - #{id} - Editar</h2>
@@ -380,22 +395,47 @@ function IncidentEdit() {
                         </ul>
                         <div className="tabcontent-border">
                             <form method="post" onSubmit={(e) => { e.preventDefault(); save() }}>
-                                <div className="form-row">
+                            <div className="form-row">
                                     <div className="col-md-4 form-group">
-                                        <label className="required">Nome</label>
-                                        <input type="text" className="form-control" onChange={e => setUser({ ...user, name: e.target.value })} defaultValue={user.name} />
+                                        <label className="required">Criticidade</label>
+                                        <select className="form-control" onChange={e => setIncident({ ...incident, criticalId: e.target.value })} value={incident.criticalId}>
+                                            <option value="">Selecione</option>
+                                            {selects.criticals.map((a,i) => {
+                                                return (
+                                                    <option key={i} value={a.id}>{a.description}</option>
+                                                )
+                                            })}
+                                        </select>
                                     </div>
                                     <div className="col-md-4 form-group">
-                                        <label className="required">Usuário</label>
-                                        <input type="text" className="form-control" onChange={e => setUser({ ...user, username: e.target.value })} defaultValue={user.username} />
+                                        <label className="required">Tipo</label>
+                                        <select className="form-control" onChange={e => setIncident({ ...incident, typeId: e.target.value })} value={incident.typeId}>
+                                            <option value="">Selecione</option>
+                                            {selects.types.map((a,i) => {
+                                                return (
+                                                    <option key={i} value={a.id}>{a.description}</option>
+                                                )
+                                            })}
+                                        </select>
                                     </div>
                                     <div className="col-md-4 form-group">
-                                        <label className="required">Senha</label>
-                                        <input type="password" className="form-control" onChange={e => setUser({ ...user, pass: e.target.value })} />
+                                        <label className="required">Status</label>
+                                        <select className="form-control" onChange={e => setIncident({ ...incident, statusId: e.target.value })} value={incident.statusId}>
+                                            <option value="">Selecione</option>
+                                            {selects.status.map((a,i) => {
+                                                return (
+                                                    <option key={i} value={a.id}>{a.description}</option>
+                                                )
+                                            })}
+                                        </select>
                                     </div>
-                                    <div className="col-md-4 form-group">
-                                        <label className="required">Confirmar senha</label>
-                                        <input type="password" className="form-control" onChange={e => setUser({ ...user, passConfirm: e.target.value })} />
+                                    <div className="col-md-12 form-group">
+                                        <label className="required">Título</label>
+                                        <input type="text" className="form-control" onChange={e => setIncident({ ...incident, title: e.target.value })} defaultValue={incident.title} />
+                                    </div>
+                                    <div className="col-md-12 form-group">
+                                        <label className="required">Descrição</label>
+                                        <textarea className="form-control" onChange={e => setIncident({ ...incident, description: e.target.value })} defaultValue={incident.description}></textarea>
                                     </div>
                                 </div>
                                 <div className="clearfix text-left">
