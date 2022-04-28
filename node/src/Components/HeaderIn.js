@@ -34,7 +34,7 @@ function HeaderIn(props) {
     }
 
     if (sessionStorage.getItem('logged') != 1 || off) {
-        return <Redirect to="/account/login" />
+        document.location.href = '/account/login'
     }
 
     return (
