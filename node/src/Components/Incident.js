@@ -78,9 +78,9 @@ function IncidentList() {
                         <div className="modal-body">
                             <p className="text-danger">Deseja realmente excluir este registro?</p>
                         </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-success" onClick={() => { del(id) }}>Sim</button>
-                            <button type="button" class="btn btn-danger" onClick={() => { setModalDelete(false) }}>Não</button>
+                        <div className="modal-footer">
+                            <button type="submit" className="btn btn-success" onClick={() => { del(id) }}>Sim</button>
+                            <button type="button" className="btn btn-danger" onClick={() => { setModalDelete(false) }}>Não</button>
                         </div>
                     </div>
                 </div>
