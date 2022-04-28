@@ -46,6 +46,17 @@ $ cp docker-compose.sample.yml docker-compose.yml
 ```
 > **_NOTA:_**  Os arquivos copiados estão aplicados no .gitignore, e não causará efeitos de modificação
 
+- Acesse a pasta do Laravel.
+```
+$ cd server
+```
+
+- Copie o arquivo **.env.example** renomeando para **.env**
+```
+$ cp .env.example .env
+```
+> **_NOTA:_**  O docker-compose foi configurado para que os containers tenha o seus hosts via nome dado no atributo ***container_name**, então é necessário que o docker-compose na versão sitada suba os containers com os nomes definidos, caso não terá que alterar os dados de acesso do banco, caso OK não precisa alterar pode deixar os dados como estão apenas execute a cópia.
+
 
 - Criei o network dos containers
 ```
@@ -68,7 +79,6 @@ $ docker network create teste-dev
       - '3307:3306'
     ...
 ``` 
-- O atributo **container_name** do container **teste.db** será o nome do host do banco de dados, uma vez em rede brigde ao subir um container ele tornar o nome teste.db como host do banco de dados localizado no arquivo **.env** do laravel.
 
 - Uma vez alterado o arquivo **docker-compose.yml** vamos utilizar o docker-compose para criar os containers
 ```
