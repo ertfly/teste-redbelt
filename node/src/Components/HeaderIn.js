@@ -75,7 +75,7 @@ function HeaderIn(props) {
                                             <img src="/assets/img/user.png" className="img-fluid rounded-circle" alt="Redbelt" />
                                         </div>
                                         <div className="profile-info d-flex flex-column align-items-end ml-2">
-                                            <a href="/" className="info1">{sessionStorage.getItem('name')}</a>
+                                            <a href="#a" className="info1">{sessionStorage.getItem('name')}</a>
                                             <a href="#a" className="info2" onClick={(e) => { e.preventDefault(); setModalClose(true) }}>Sair</a>
                                         </div>
                                     </div>
