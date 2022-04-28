@@ -9,24 +9,12 @@
 # Entendendo a estrutura 
 ```
 .
-+-- _config.yml
-+-- _drafts
-|   +-- begin-with-the-crazy-ideas.textile
-|   +-- on-simplicity-in-technology.markdown
-+-- _includes
-|   +-- footer.html
-|   +-- header.html
-+-- _layouts
-|   +-- default.html
-|   +-- post.html
-+-- _posts
-|   +-- 2007-10-29-why-every-programmer-should-play-nethack.textile
-|   +-- 2009-04-26-barcamp-boston-4-roundup.textile
-+-- _data
-|   +-- members.yml
-+-- _site
-+-- index.html
++-- node (pasta do node - desenvolvimento front)
++-- server (pasta do laravel - desenvolvimento back)
+|   +-- public (fiz o npm rum build no node e copiei o build para a raiz)
+        +-- api (pasta do laravel onde tem a raiz da /api)
 ```
+> **_NOTA:_**  Nas pastas **public** e **public/api** já tem o htaccess para tratar as rotas
 
 # Instruções de instalação #
 - Acesse a pasta onde irá clonar o projeto
