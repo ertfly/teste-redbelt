@@ -164,8 +164,13 @@ function IncidentAdd() {
     }
 
     let [incident, setIncident] = useState({})
-    let [loader, setLoader] = useState(false)
+    let [loader, setLoader] = useState(true)
     let [error, setError] = useState('')
+    let [selects,setSelects] = useState({
+        criticals: [],
+        types: [],
+        status: [],
+    })
 
     let breadcrumb = [];
     breadcrumb.push({
@@ -183,6 +188,26 @@ function IncidentAdd() {
         url: null,
         active: true,
     })
+
+    let load = () => {
+        axios.get(BASE_URL + 'incident/create', { headers: { 'token': sessionStorage.getItem('token') } }).then((request) => {
+            let response = request.data.response
+            let data = request.data.data
+
+            if (response.action !== 0) {
+                setLoader(false)
+                setError(response.msg)
+                return;
+            }
+
+            setLoader(false)
+            setSelects(data)
+        })
+    }
+
+    useEffect(()=>{
+        load()
+    },[])
 
     let save = () => {
         setLoader(true)
@@ -223,9 +248,27 @@ function IncidentAdd() {
                         <div className="tabcontent-border">
                             <form method="post" onSubmit={(e) => { e.preventDefault(); save() }}>
                                 <div className="form-row">
+                                    <div className="col-md-4 form-group">
+                                        <label className="required">Criticidade</label>
+                                        <select className="form-control">
+                                            <option value="">Selecione</option>
+                                            {selects.criticals.map((a)=>{
+                                                return (
+                                                    <>
+                                                        <option value={a.id} selected={a.selected}>{a.description}</option>
+                                                    </>
+                                                )
+                                            })}
+                                        </select>
+                                        {/* <input type="text" className="form-control" onChange={e => setIncident({ ...incident, title: e.target.value })} /> */}
+                                    </div>
                                     <div className="col-md-12 form-group">
-                                        <label className="required">Títutlo</label>
+                                        <label className="required">Título</label>
                                         <input type="text" className="form-control" onChange={e => setIncident({ ...incident, title: e.target.value })} />
+                                    </div>
+                                    <div className="col-md-12 form-group">
+                                        <label className="required">Descrição</label>
+                                        <textarea className="form-control" onChange={e => setIncident({ ...incident, description: e.target.value })}></textarea>
                                     </div>
                                 </div>
                                 <div className="clearfix text-left">
