@@ -81,8 +81,15 @@ $ docker exec -it teste.api composer install
 ```
 > **_NOTA:_**  O nome **teste.api** é o nome dado no container via atributo **container_name**, caso o atributo não funcionar na sua versão do docker-compose, é só renomear o container utilizando o comando `docker rename {id_do_container} teste.api`, o id do container pode ser consultado utilizando o comando `docker ps` procure o id na coluna **CONTAINER ID**.
 
-- Por fim vamos rodar o migrate da aplicação, por padrão já é criado automáticamente um usuário para acessar o sistema.
+- Vamos rodar o migrate da aplicação, por padrão já é criado automáticamente um usuário para acessar o sistema.
 ```
 $ docker exec -it teste.api php artisan migrate
 ```
 > **_NOTA:_**  O migrate irá criar um usuário **admin** e senha **admin** para acessar o ambiente e testar o CRUD
+
+## Se sua máquina for linux ou mac leia
+- No caso desses sitemas operacionais, as pastas do laravel **storage** ficam sem permissão de escrita caso for execute os comandos abaixo.
+```
+$ sh chmod.sh
+```
+> **_NOTA:_**  O arquivo **chmod.sh** é um bash aplicando chmod nas pastas necessárias
