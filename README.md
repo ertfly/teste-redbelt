@@ -79,7 +79,7 @@ $ docker-compose up -d
 ```
 $ docker exec -it teste.api composer install
 ```
-> **_NOTA:_**  O nome **teste.api** é o nome dado no container via atributo **container_name**, caso o atributo não funcionar na sua versão do docker-compose é só renomear o container utilizando o comando `docker rename {id_do_container} teste.api`, o id do container pode ser consultado utilizando o comando `docker ps` procure o id na coluna **CONTAINER ID**.
+> **_NOTA:_**  O nome **teste.api** é o nome dado no container via atributo **container_name**, caso o atributo não funcionar na sua versão do docker-compose, é só renomear o container utilizando o comando `docker rename {id_do_container} teste.api`, o id do container pode ser consultado utilizando o comando `docker ps` procure o id na coluna **CONTAINER ID**.
 
 - Por fim vamos rodar o migrate da aplicação, por padrão já é criado automáticamente um usuário para acessar o sistema.
 ```
