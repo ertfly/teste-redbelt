@@ -242,11 +242,9 @@ function IncidentAdd() {
                                         <label className="required">Criticidade</label>
                                         <select className="form-control">
                                             <option value="">Selecione</option>
-                                            {selects.criticals.map((a) => {
+                                            {selects.criticals.map((a,i) => {
                                                 return (
-                                                    <>
-                                                        <option value={a.id} selected={a.selected}>{a.description}</option>
-                                                    </>
+                                                    <option key={i} value={a.id}>{a.description}</option>
                                                 )
                                             })}
                                         </select>

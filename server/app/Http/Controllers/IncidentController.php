@@ -43,7 +43,6 @@ class IncidentController
             $criticals[] = [
                 'id' => $a->id,
                 'description' => $a->description,
-                'selected' => false,
             ];
         }
 
@@ -52,7 +51,6 @@ class IncidentController
             $types[] = [
                 'id' => $a->id,
                 'description' => $a->description,
-                'selected' => false,
             ];
         }
 
@@ -61,7 +59,6 @@ class IncidentController
             $status[] = [
                 'id' => $a->id,
                 'description' => $a->description,
-                'selected' => false,
             ];
         }
 
@@ -171,7 +168,6 @@ class IncidentController
             $criticals[] = [
                 'id' => $a->id,
                 'description' => $a->description,
-                'selected' => $incident->critical_id == $a->id ? true : false,
             ];
         }
 
@@ -180,7 +176,6 @@ class IncidentController
             $types[] = [
                 'id' => $a->id,
                 'description' => $a->description,
-                'selected' => $incident->type_id == $a->id ? true : false,
             ];
         }
 
@@ -189,7 +184,6 @@ class IncidentController
             $status[] = [
                 'id' => $a->id,
                 'description' => $a->description,
-                'selected' => $incident->status_id == $a->id ? true : false,
             ];
         }
 
@@ -197,6 +191,9 @@ class IncidentController
             'id' => $incident->id,
             'title' => $incident->title,
             'description' => $incident->description,
+            'critical_id' => $incident->critical_id,
+            'type_id' => $incident->type_id,
+            'status_id' => $incident->status_id,
             'criticals' => $criticals,
             'types' => $types,
             'status' => $status,
