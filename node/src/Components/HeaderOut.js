@@ -1,5 +1,11 @@
+import { Redirect } from "react-router-dom";
 
 function HeaderOut() {
+
+    if (sessionStorage.getItem('logged') == 1) {
+        return <Redirect to="/" />
+    }
+
     return (
         <>
             <link href="/assets/css/base.out.css" rel="stylesheet" nonce="rAnd0m" />
