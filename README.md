@@ -104,7 +104,7 @@ $ docker exec -it teste.api php artisan migrate
 > **_NOTA:_**  O migrate irá criar um usuário **admin** e senha **admin** para acessar o ambiente e testar o CRUD
 
 ## Se sua máquina for linux ou mac leia
-- No caso desses sitemas operacionais, as pastas do laravel **storage** ficam sem permissão de escrita caso for execute os comandos abaixo.
+- No caso desses sitemas operacionais, as pastas do laravel **storage** ficam sem permissão de escrita, caso for execute os comandos abaixo.
 ```
 $ sh chmod.sh
 ```
