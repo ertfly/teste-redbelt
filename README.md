@@ -75,3 +75,4 @@ $ docker exec -it teste.api composer install
 ```
 $ docker exec -it teste.api php artisan migrate
 ```
+> **_NOTA:_**  O migrate irá criar um usuário **admin** e senha **admin** para acessar o ambiente e testar o CRUD
