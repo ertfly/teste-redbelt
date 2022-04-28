@@ -302,9 +302,9 @@ function IncidentEdit() {
     let [incident, setIncident] = useState({
         title: '',
         description: '',
-        criticalId: null,
-        typeId: null,
-        statusId: null,
+        criticalId: 0,
+        typeId: 0,
+        statusId: 0,
     })
     let [loader, setLoader] = useState(true)
     let [error, setError] = useState('')
