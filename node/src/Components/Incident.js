@@ -240,7 +240,7 @@ function IncidentAdd() {
                                 <div className="form-row">
                                     <div className="col-md-4 form-group">
                                         <label className="required">Criticidade</label>
-                                        <select className="form-control">
+                                        <select className="form-control" onChange={e => setIncident({ ...incident, criticalId: e.target.value })}>
                                             <option value="">Selecione</option>
                                             {selects.criticals.map((a,i) => {
                                                 return (
@@ -251,7 +251,7 @@ function IncidentAdd() {
                                     </div>
                                     <div className="col-md-4 form-group">
                                         <label className="required">Tipo</label>
-                                        <select className="form-control">
+                                        <select className="form-control" onChange={e => setIncident({ ...incident, typeId: e.target.value })}>
                                             <option value="">Selecione</option>
                                             {selects.types.map((a,i) => {
                                                 return (
@@ -262,7 +262,7 @@ function IncidentAdd() {
                                     </div>
                                     <div className="col-md-4 form-group">
                                         <label className="required">Status</label>
-                                        <select className="form-control">
+                                        <select className="form-control" onChange={e => setIncident({ ...incident, statusId: e.target.value })}>
                                             <option value="">Selecione</option>
                                             {selects.status.map((a,i) => {
                                                 return (
