@@ -248,7 +248,28 @@ function IncidentAdd() {
                                                 )
                                             })}
                                         </select>
-                                        {/* <input type="text" className="form-control" onChange={e => setIncident({ ...incident, title: e.target.value })} /> */}
+                                    </div>
+                                    <div className="col-md-4 form-group">
+                                        <label className="required">Tipo</label>
+                                        <select className="form-control">
+                                            <option value="">Selecione</option>
+                                            {selects.types.map((a,i) => {
+                                                return (
+                                                    <option key={i} value={a.id}>{a.description}</option>
+                                                )
+                                            })}
+                                        </select>
+                                    </div>
+                                    <div className="col-md-4 form-group">
+                                        <label className="required">Status</label>
+                                        <select className="form-control">
+                                            <option value="">Selecione</option>
+                                            {selects.status.map((a,i) => {
+                                                return (
+                                                    <option key={i} value={a.id}>{a.description}</option>
+                                                )
+                                            })}
+                                        </select>
                                     </div>
                                     <div className="col-md-12 form-group">
                                         <label className="required">Título</label>
