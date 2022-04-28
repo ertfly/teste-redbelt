@@ -115,3 +115,6 @@ $ sh chmod.sh
 ```
 $ docker exec -it teste.api vendor/bin/phpunit 
 ```
+
+## Rodando a aplicação
+- Na porta externa configurada no container **teste.api** no utilize para acessar o sistema http://localhost:{porta_configurada}/, caso não tenha alterado as portas basta acessar a parte default da configuração http://localhost:8016
