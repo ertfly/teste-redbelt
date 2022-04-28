@@ -59,6 +59,17 @@ $ docker network create teste-dev
     ...
 ``` 
 
+- Uma vez alterado o arquivo **docker-compose.yml** vamos utilizar o docker-compose para criar os containers
+```
+$ docker-compose up -d
+```
+> **_NOTA:_**  O comando reflete a versão do docker que não tem o docker-compose imbutido.
 
-docker exec -it teste.api composer install
+- Ao finalizar vamos instalar os pacotes das dependências
+```
+$ docker exec -it teste.api composer install
+```
+> **_NOTA:_**  O nome **teste.api** é o nome dado no container via atributo **container_name**.
+
+
 docker exec -it teste.api php artisan migrate
